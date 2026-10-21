@@ -212,7 +212,7 @@ const D = {
    "estado": "conferida",
    "testes": 16,
    "branch": "tarefa-003",
-   "commit": "c683e5d"
+   "commit": "2a0266f"
   },
   {
    "id": "004",
@@ -323,8 +323,9 @@ const D = {
   {
    "id": "T10",
    "texto": "Rodar hospedado na Onnira Cloud AI",
-   "estado": "nao-iniciado",
-   "nota": "nunca testado — maior risco do calendário"
+   "estado": "parcial",
+   "nota": "publicado e RUNNING na Onnira (512 MB · 5 GB · 1 vCPU); não verificável de fora — a plataforma devolve 403 a acesso externo",
+   "tarefa": "deploy"
   }
  ],
  "achados": [
@@ -348,6 +349,20 @@ const D = {
    "estado": "aberto",
    "prazo": "antes de publicar na Onnira",
    "tarefa": "001"
+  },
+  {
+   "id": "D1",
+   "texto": "O app publicado responde 403 a acesso externo: a Onnira só permite acesso de dentro da plataforma. Não há campo de visibilidade na API pública.",
+   "estado": "aberto",
+   "prazo": "confirmar no plantão de 22/10, antes do pitch",
+   "tarefa": "deploy"
+  },
+  {
+   "id": "D2",
+   "texto": "Persistência do disco entre deploys segue sem resposta: sem alcançar o app de fora, não deu para gravar configuração e republicar para testar.",
+   "estado": "aberto",
+   "prazo": "plantão de 22/10",
+   "tarefa": "deploy"
   }
  ],
  "riscos": [],
