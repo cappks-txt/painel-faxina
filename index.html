@@ -1,0 +1,468 @@
+<title>Faxina do CRM — Linha de Montagem</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#f5f7f8; --surface:#fff; --surface-2:#eef2f4; --linha:#d8e0e5;
+  --ink:#141a1f; --ink-2:#4a5964; --ink-3:#74838e;
+  --accent:#0f7a85; --accent-fraco:#e2f1f3;
+  --pronto:#1b7a4f; --pronto-fraco:#e3f3ea;
+  --parcial:#8c6008; --parcial-fraco:#fbf0d9;
+  --aberto:#b03a24; --aberto-fraco:#fbe8e3;
+  --espera:#6b7a85; --espera-fraco:#e9eef1;
+  --sombra:0 1px 2px rgba(20,26,31,.06);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0d1114; --surface:#151b20; --surface-2:#1c242a; --linha:#2a343b;
+  --ink:#e8eef2; --ink-2:#a3b1bb; --ink-3:#76848e;
+  --accent:#4fc3cd; --accent-fraco:#13343a;
+  --pronto:#5fc78f; --pronto-fraco:#142f22;
+  --parcial:#e0b259; --parcial-fraco:#33280f;
+  --aberto:#f08a6e; --aberto-fraco:#3a1d16;
+  --espera:#8b99a3; --espera-fraco:#1e262c;
+  --sombra:0 1px 2px rgba(0,0,0,.4);
+}}
+:root[data-theme="dark"]{
+  --ground:#0d1114; --surface:#151b20; --surface-2:#1c242a; --linha:#2a343b;
+  --ink:#e8eef2; --ink-2:#a3b1bb; --ink-3:#76848e;
+  --accent:#4fc3cd; --accent-fraco:#13343a;
+  --pronto:#5fc78f; --pronto-fraco:#142f22;
+  --parcial:#e0b259; --parcial-fraco:#33280f;
+  --aberto:#f08a6e; --aberto-fraco:#3a1d16;
+  --espera:#8b99a3; --espera-fraco:#1e262c;
+  --sombra:0 1px 2px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font:400 15px/1.55 "IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  font-variant-numeric:tabular-nums}
+.pagina{max-width:1080px;margin:0 auto;padding-block:28px 72px;padding-left:16px;padding-right:16px}
+h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
+  text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(26px,5vw,38px);font-weight:700}
+h2{font-size:19px;font-weight:600;margin-bottom:14px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.rotulo{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+
+header.topo{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;
+  justify-content:space-between;padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:30px}
+.topo p{margin:5px 0 0;color:var(--ink-2);max-width:56ch}
+.contagem{text-align:right}
+.contagem .num{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:42px;
+  font-weight:700;line-height:1;color:var(--accent)}
+
+section{margin-bottom:34px}
+.sub{color:var(--ink-2);margin:-8px 0 14px;max-width:70ch;font-size:14px}
+
+/* fluxo */
+.fluxo{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:10px}
+.passo{background:var(--surface);border:1px solid var(--linha);border-radius:3px;
+  padding:13px 14px;box-shadow:var(--sombra);position:relative}
+.passo .quem{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-bottom:7px}
+.quem.claude{background:var(--accent-fraco);color:var(--accent)}
+.quem.codex{background:var(--parcial-fraco);color:var(--parcial)}
+.quem.erick{background:var(--pronto-fraco);color:var(--pronto)}
+.passo b{display:block;font-size:14px;margin-bottom:3px}
+.passo span{font-size:12.5px;color:var(--ink-2);line-height:1.45}
+.passo::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);
+  color:var(--ink-3);font-size:14px;z-index:1}
+.passo:last-child::after{content:""}
+@media(max-width:620px){.passo::after{content:"↓";right:auto;left:50%;top:auto;bottom:-14px;transform:translateX(-50%)}}
+
+/* trilho de tarefas */
+.trilho{display:flex;flex-direction:column;gap:9px}
+.tarefa{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;
+  background:var(--surface);border:1px solid var(--linha);border-left:3px solid var(--espera);
+  border-radius:3px;padding:12px 15px;box-shadow:var(--sombra)}
+.tarefa.e-mesclada,.tarefa.e-conferida{border-left-color:var(--pronto)}
+.tarefa.e-executada{border-left-color:var(--parcial)}
+.tarefa.e-futura{border-left-color:var(--linha);background:transparent;box-shadow:none;border-style:dashed}
+.tarefa .id{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:25px;font-weight:700;color:var(--ink-3)}
+.tarefa.e-conferida .id,.tarefa.e-mesclada .id{color:var(--pronto)}
+.tarefa .tit{font-weight:500;line-height:1.35}
+.tarefa .meta{font-size:12px;color:var(--ink-3);margin-top:3px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.direita{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+@media(max-width:560px){.tarefa{grid-template-columns:40px 1fr}.direita{grid-column:2;align-items:flex-start}}
+
+.pastilha{display:inline-block;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:2px;white-space:nowrap}
+.p-pronto{background:var(--pronto-fraco);color:var(--pronto)}
+.p-parcial{background:var(--parcial-fraco);color:var(--parcial)}
+.p-aberto{background:var(--aberto-fraco);color:var(--aberto)}
+.p-espera{background:var(--espera-fraco);color:var(--espera)}
+
+/* requisitos */
+.grupos{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.grupo{background:var(--surface);border:1px solid var(--linha);border-radius:3px;padding:16px;box-shadow:var(--sombra)}
+.grupo h3{font-size:13px;font-weight:600;margin-bottom:12px;color:var(--ink-2)}
+.req{display:grid;grid-template-columns:34px 1fr auto;gap:9px;align-items:baseline;
+  padding:7px 0;border-top:1px solid var(--linha);font-size:13.5px}
+.req:first-of-type{border-top:0}
+.req .cod{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:12px;color:var(--ink-3)}
+.req .txt{line-height:1.4}
+.req .nota{display:block;font-size:11.5px;color:var(--ink-3);margin-top:2px;font-style:italic}
+.ponto{width:9px;height:9px;border-radius:50%;flex:none;align-self:center}
+.ponto.pronto{background:var(--pronto)}
+.ponto.parcial{background:var(--parcial)}
+.ponto.planejado{background:var(--espera);opacity:.5}
+.ponto.nao-iniciado{background:transparent;border:1.5px dashed var(--aberto)}
+
+.lista{display:flex;flex-direction:column;gap:9px}
+.item{background:var(--surface);border:1px solid var(--linha);border-radius:3px;
+  padding:12px 15px;display:flex;gap:13px;align-items:flex-start;box-shadow:var(--sombra)}
+.item.alto{border-left:3px solid var(--aberto)}
+.item.ok{border-left:3px solid var(--pronto)}
+.item .corpo{flex:1;min-width:0}
+.item .corpo b{font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.item .corpo p{margin:2px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+
+.marcos{display:flex;flex-direction:column;gap:0}
+.marco{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--linha);align-items:baseline}
+.marco:first-child{border-top:0}
+.marco .d{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--accent)}
+.marco.futuro .d{color:var(--ink-3)}
+
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--linha);
+  font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+</style>
+
+<div class="pagina">
+  <header class="topo">
+    <div>
+      <p class="rotulo">Desafio Vibecode Br24 · card 02/15</p>
+      <h1>Faxina do CRM</h1>
+      <p>Linha de montagem do app: Claude escreve o contrato, o Codex executa em worktree isolada, Claude confere, a coordenação decide o merge.</p>
+    </div>
+    <div class="contagem">
+      <div class="num" id="dias">—</div>
+      <p class="rotulo">dias até o pitch</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Como uma tarefa nasce e termina</h2>
+    <p class="sub">Seis etapas, três responsáveis. O contrato é o que faz o Codex entregar em minutos sem perguntar — e quando ele tem lacuna, o defeito aparece na revisão.</p>
+    <div class="fluxo" id="fluxo"></div>
+  </section>
+
+  <section>
+    <h2>Tarefas</h2>
+    <p class="sub">Estado derivado do repositório: contrato escrito, execução registrada, revisão do arquiteto feita, branch mesclada.</p>
+    <div class="trilho" id="trilho"></div>
+  </section>
+
+  <section>
+    <h2>Requisitos</h2>
+    <p class="sub">Os cinco do card são o produto; os dez técnicos são o que a banca confere. Nenhum está pronto por declaração — cada um aponta a tarefa que o entregou.</p>
+    <div class="grupos" id="requisitos"></div>
+  </section>
+
+  <section>
+    <h2>Achados</h2>
+    <p class="sub">O que a revisão encontrou. Os dois abertos vieram de lacuna no contrato, não de erro do executor.</p>
+    <div class="lista" id="achados"></div>
+  </section>
+
+  <section>
+    <h2>Riscos</h2>
+    <div class="lista" id="riscos"></div>
+  </section>
+
+  <section>
+    <h2>Marcos</h2>
+    <div class="marcos" id="marcos"></div>
+  </section>
+
+  <footer>
+    <span>Gerado de <span class="mono">docs/coordenação/</span> por <span class="mono">painel-projeto.py</span></span>
+    <span id="gerado"></span>
+  </footer>
+</div>
+
+<script>
+const D = {
+ "gerado": "2026-10-21",
+ "pitch": "2026-10-29",
+ "publico": true,
+ "atores": {
+  "claude": "Claude",
+  "codex": "Codex",
+  "erick": "Coordenação"
+ },
+ "tarefas": [
+  {
+   "id": "001",
+   "titulo": "Conectar ao Bitrix24 pelo wizard e provar a conexão",
+   "estado": "conferida",
+   "testes": 4,
+   "branch": "tarefa-001-conexao",
+   "commit": "d481195"
+  },
+  {
+   "id": "002",
+   "titulo": "Espelho local do CRM: sincronização e cache",
+   "estado": "conferida",
+   "testes": 10,
+   "branch": "tarefa-002-sincronizacao",
+   "commit": "d194342"
+  },
+  {
+   "id": "003",
+   "titulo": "Duplicados: detecção, revisão e reconciliação",
+   "estado": "conferida",
+   "testes": 16,
+   "branch": "tarefa-003",
+   "commit": "c683e5d"
+  },
+  {
+   "id": "004",
+   "titulo": "Cadastros incompletos e indicadores de qualidade",
+   "entrega": "F4 e F5",
+   "escreve_no_crm": false,
+   "estado": "futura",
+   "testes": null,
+   "branch": null
+  },
+  {
+   "id": "005",
+   "titulo": "Padronização e execução das fusões aprovadas",
+   "entrega": "F3",
+   "escreve_no_crm": true,
+   "estado": "futura",
+   "testes": null,
+   "branch": null
+  }
+ ],
+ "requisitos": [
+  {
+   "id": "F1",
+   "texto": "Identificar duplicados em contatos, empresas e leads",
+   "estado": "pronto",
+   "tarefa": "003"
+  },
+  {
+   "id": "F2",
+   "texto": "Permitir a revisão dos duplicados",
+   "estado": "pronto",
+   "tarefa": "003"
+  },
+  {
+   "id": "F3",
+   "texto": "Padronizar nomes, telefones e e-mails",
+   "estado": "planejado",
+   "tarefa": "005"
+  },
+  {
+   "id": "F4",
+   "texto": "Identificar cadastros incompletos ou inconsistentes",
+   "estado": "planejado",
+   "tarefa": "004"
+  },
+  {
+   "id": "F5",
+   "texto": "Indicadores de qualidade da base",
+   "estado": "planejado",
+   "tarefa": "004"
+  },
+  {
+   "id": "T1",
+   "texto": "Next.js e Node.js",
+   "estado": "pronto",
+   "tarefa": "001"
+  },
+  {
+   "id": "T2",
+   "texto": "SQLite com dados em ./data",
+   "estado": "pronto",
+   "tarefa": "001"
+  },
+  {
+   "id": "T3",
+   "texto": "API REST oficial, sem IDs fixos",
+   "estado": "pronto",
+   "tarefa": "001"
+  },
+  {
+   "id": "T4",
+   "texto": "Cache local e sincronização",
+   "estado": "pronto",
+   "tarefa": "002"
+  },
+  {
+   "id": "T5",
+   "texto": "Wizard de configuração inicial",
+   "estado": "pronto",
+   "tarefa": "001"
+  },
+  {
+   "id": "T6",
+   "texto": "Respeitar permissões do usuário",
+   "estado": "parcial",
+   "tarefa": "002",
+   "nota": "herdado do webhook; não conferido com usuário restrito"
+  },
+  {
+   "id": "T7",
+   "texto": "Tokens protegidos",
+   "estado": "pronto",
+   "tarefa": "001"
+  },
+  {
+   "id": "T8",
+   "texto": "Interface em português e responsiva",
+   "estado": "parcial",
+   "tarefa": "001",
+   "nota": "viewport e media query no código; sem conferência visual em celular"
+  },
+  {
+   "id": "T9",
+   "texto": "Tratamento de erros e logs",
+   "estado": "pronto",
+   "tarefa": "001"
+  },
+  {
+   "id": "T10",
+   "texto": "Rodar hospedado na Onnira Cloud AI",
+   "estado": "nao-iniciado",
+   "nota": "nunca testado — maior risco do calendário"
+  }
+ ],
+ "achados": [
+  {
+   "id": "B1",
+   "texto": "Exclusão no Bitrix não chegava ao espelho local",
+   "estado": "fechado",
+   "onde": "tarefa 003",
+   "tarefa": "002"
+  },
+  {
+   "id": "C1",
+   "texto": "Trocar a URL do webhook apaga o espelho e as decisões de duplicados",
+   "estado": "aberto",
+   "prazo": "antes da tarefa 005",
+   "tarefa": "003"
+  },
+  {
+   "id": "A3",
+   "texto": "Nenhum controle de acesso ao próprio app",
+   "estado": "aberto",
+   "prazo": "antes de publicar na Onnira",
+   "tarefa": "001"
+  }
+ ],
+ "riscos": [],
+ "marcos": [
+  {
+   "data": "2026-10-22",
+   "texto": "Plantão de dúvidas e deploy vazio na Onnira",
+   "estado": "proximo"
+  },
+  {
+   "data": "2026-10-29",
+   "texto": "Pitch final, 5 minutos cronometrados",
+   "estado": "futuro"
+  },
+  {
+   "data": "2026-11-03",
+   "texto": "Entrega definitiva e materiais de publicação",
+   "estado": "futuro"
+  }
+ ]
+};
+
+const PASSOS = [
+  ["claude","Contrato","decisões fechadas e critérios verificáveis por comando"],
+  ["claude","Preparo","worktree na branch da tarefa anterior; dependências instaladas antes"],
+  ["codex","Execução","worktree isolada, sandbox sem rede, aprovação não existe"],
+  ["codex","Registro","provas e saída real dos comandos no execução.md"],
+  ["claude","Verificação","testes, build, varredura e o fluxo no portal fictício"],
+  ["erick","Merge","a integração é decisão humana, sempre"],
+];
+const NOME = D.atores;
+
+const ESTADO = {
+  mesclada:  ["p-pronto","mesclada"],
+  conferida: ["p-pronto","conferida"],
+  executada: ["p-parcial","aguarda revisão"],
+  contrato:  ["p-espera","contrato escrito"],
+  futura:    ["p-espera","planejada"],
+};
+
+function el(tag, cls, html){const n=document.createElement(tag); if(cls)n.className=cls; if(html!=null)n.innerHTML=html; return n;}
+
+document.getElementById("fluxo").append(...PASSOS.map(([quem,tit,desc])=>{
+  const p = el("div","passo");
+  p.append(el("span","quem "+quem,NOME[quem]), el("b",null,tit), el("span",null,desc));
+  return p;
+}));
+
+const trilho = document.getElementById("trilho");
+for (const t of D.tarefas) {
+  const [cls,rot] = ESTADO[t.estado] || ESTADO.contrato;
+  const linha = el("div","tarefa e-"+t.estado);
+  linha.append(el("div","id",t.id));
+  const meio = el("div");
+  meio.append(el("div","tit",t.titulo));
+  const meta = el("div","meta");
+  if (t.branch) meta.append(el("span","mono",t.branch + (t.commit? " · "+t.commit : "")));
+  if (t.testes) meta.append(el("span",null,t.testes+" testes passando"));
+  const abertos = (D.achados||[]).filter(a=>a.estado!=="fechado" && a.tarefa===t.id);
+  if (abertos.length) meta.append(el("span",null,"achado aberto "+abertos.map(a=>a.id).join(", ")));
+  if (!t.branch && !t.testes) meta.append(el("span",null, t.entrega ? "entrega "+t.entrega : "ainda não começada"));
+  if (t.escreve_no_crm) meta.append(el("span",null,"⚠ escreve no CRM"));
+  meio.append(meta);
+  linha.append(meio);
+  const dir = el("div","direita");
+  dir.append(el("span","pastilha "+cls,rot));
+  linha.append(dir);
+  trilho.append(linha);
+}
+
+const porGrupo = {"Requisitos do card — o produto":/^F/, "Requisitos técnicos — o que a banca confere":/^T/};
+const reqs = document.getElementById("requisitos");
+for (const [titulo,re] of Object.entries(porGrupo)) {
+  const g = el("div","grupo");
+  g.append(el("h3",null,titulo));
+  for (const r of D.requisitos.filter(x=>re.test(x.id))) {
+    const linha = el("div","req");
+    linha.append(el("span","cod",r.id));
+    const txt = el("span","txt",r.texto + (r.tarefa ? ' <span class="mono" style="color:var(--ink-3);font-size:11.5px">· '+r.tarefa+'</span>' : ""));
+    if (r.nota) txt.append(el("span","nota",r.nota));
+    linha.append(txt, el("span","ponto "+r.estado));
+    g.append(linha);
+  }
+  reqs.append(g);
+}
+
+const ach = document.getElementById("achados");
+for (const a of D.achados) {
+  const fechado = a.estado === "fechado";
+  const i = el("div","item "+(fechado?"ok":"alto"));
+  const c = el("div","corpo");
+  c.append(el("b",null,a.id));
+  c.append(el("p",null,a.texto));
+  i.append(c, el("span","pastilha "+(fechado?"p-pronto":"p-aberto"), fechado ? "fechado · "+a.onde : "aberto · "+a.prazo));
+  ach.append(i);
+}
+
+const ris = document.getElementById("riscos");
+if (!D.riscos.length) ris.closest("section").hidden = true;
+for (const r of D.riscos) {
+  const i = el("div","item alto");
+  const c = el("div","corpo"); c.append(el("p",null,r.texto));
+  i.append(c);
+  ris.append(i);
+}
+
+const mar = document.getElementById("marcos");
+for (const m of D.marcos) {
+  const d = el("div","marco "+m.estado);
+  const [a,ms,ds] = m.data.split("-");
+  d.append(el("span","d",ds+"/"+ms), el("span",null,m.texto));
+  mar.append(d);
+}
+
+const faltam = Math.round((new Date(D.pitch+"T00:00:00") - new Date(D.gerado+"T00:00:00"))/86400000);
+document.getElementById("dias").textContent = faltam;
+document.getElementById("gerado").textContent = "Estado de " + D.gerado.split("-").reverse().join("/");
+</script>
