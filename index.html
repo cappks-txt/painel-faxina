@@ -62,7 +62,7 @@ section{margin-bottom:34px}
   font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-bottom:7px}
 .quem.claude{background:var(--accent-fraco);color:var(--accent)}
 .quem.codex{background:var(--parcial-fraco);color:var(--parcial)}
-.quem.erick{background:var(--pronto-fraco);color:var(--pronto)}
+.quem.humano{background:var(--pronto-fraco);color:var(--pronto)}
 .passo b{display:block;font-size:14px;margin-bottom:3px}
 .passo span{font-size:12.5px;color:var(--ink-2);line-height:1.45}
 .passo::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);
@@ -187,7 +187,7 @@ const D = {
  "atores": {
   "claude": "Claude",
   "codex": "Codex",
-  "erick": "Coordenação"
+  "humano": "Coordenação"
  },
  "tarefas": [
   {
@@ -376,7 +376,7 @@ const PASSOS = [
   ["codex","Execução","worktree isolada, sandbox sem rede, aprovação não existe"],
   ["codex","Registro","provas e saída real dos comandos no execução.md"],
   ["claude","Verificação","testes, build, varredura e o fluxo no portal fictício"],
-  ["erick","Merge","a integração é decisão humana, sempre"],
+  ["humano","Merge","a integração é decisão humana, sempre"],
 ];
 const NOME = D.atores;
 
