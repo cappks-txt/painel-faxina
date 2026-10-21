@@ -212,7 +212,15 @@ const D = {
    "estado": "conferida",
    "testes": 16,
    "branch": "tarefa-003",
-   "commit": "2a0266f"
+   "commit": "853d788"
+  },
+  {
+   "id": "004",
+   "titulo": "Cadastros com problema e indicadores de qualidade",
+   "estado": "conferida",
+   "testes": 19,
+   "branch": "tarefa-004",
+   "commit": "48db64b"
   },
   {
    "id": "004",
@@ -255,13 +263,13 @@ const D = {
   {
    "id": "F4",
    "texto": "Identificar cadastros incompletos ou inconsistentes",
-   "estado": "planejado",
+   "estado": "pronto",
    "tarefa": "004"
   },
   {
    "id": "F5",
    "texto": "Indicadores de qualidade da base",
-   "estado": "planejado",
+   "estado": "pronto",
    "tarefa": "004"
   },
   {
@@ -359,10 +367,10 @@ const D = {
   },
   {
    "id": "D2",
-   "texto": "Persistência do disco entre deploys segue sem resposta: sem alcançar o app de fora, não deu para gravar configuração e republicar para testar.",
+   "tarefa": "deploy",
    "estado": "aberto",
    "prazo": "plantão de 22/10",
-   "tarefa": "deploy"
+   "texto": "O contêiner da Onnira não alcança o portal Bitrix24: falha de rede em 10,5 s, enquanto o mesmo portal responde em 0,63 s de fora. Sem saída de rede, a integração REST não funciona lá — e é o requisito central do desafio."
   }
  ],
  "riscos": [],
