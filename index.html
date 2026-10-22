@@ -244,7 +244,7 @@ const D = {
    "estado": "executada",
    "testes": 38,
    "branch": "tarefa-007",
-   "commit": "c83d5dd"
+   "commit": "0832c3f"
   },
   {
    "id": "004",
@@ -281,7 +281,7 @@ const D = {
   {
    "id": "F3",
    "texto": "Padronizar nomes, telefones e e-mails",
-   "estado": "planejado",
+   "estado": "pronto",
    "tarefa": "005"
   },
   {
@@ -342,8 +342,8 @@ const D = {
   {
    "id": "T8",
    "texto": "Interface em português e responsiva",
-   "estado": "parcial",
-   "tarefa": "001",
+   "estado": "em execução",
+   "tarefa": "008",
    "nota": "viewport e media query no código; sem conferência visual em celular"
   },
   {
@@ -367,6 +367,7 @@ const D = {
    "estado": "fechado",
    "onde": "tarefa 003",
    "tarefa": "002",
+   "fechado_por": "002",
    "onde_no_codigo": ""
   },
   {
@@ -380,10 +381,11 @@ const D = {
   },
   {
    "id": "A3",
-   "texto": "Achado de gravidade a classificar em correção. O detalhe fica no repositório privado até ser fechado.",
-   "estado": "aberto",
+   "texto": "Nenhum controle de acesso ao próprio app",
+   "estado": "fechado",
    "prazo": "antes de publicar na Onnira",
    "tarefa": "001",
+   "fechado_por": "006",
    "onde_no_codigo": ""
   },
   {
@@ -404,40 +406,44 @@ const D = {
   },
   {
    "id": "E1",
-   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Qualquer visitante lê dados do cliente.",
    "gravidade": "alta",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "005"
+   "tarefa": "005",
+   "fechado_por": "006"
   },
   {
    "id": "E2",
-   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Visitante dispara escrita ou reversão no CRM.",
    "gravidade": "alta",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "005"
+   "tarefa": "005",
+   "fechado_por": "006"
   },
   {
    "id": "E3",
-   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Troca pública de portal apaga decisões e histórico de reversão.",
    "gravidade": "alta",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "005"
+   "tarefa": "005",
+   "fechado_por": "006"
   },
   {
    "id": "E4",
-   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Padronização elimina dígito de celular.",
    "gravidade": "alta",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "QA ponta a ponta + segurança",
    "tarefa": "005",
-   "confirmado_por": 2
+   "confirmado_por": 2,
+   "fechado_por": "006"
   },
   {
    "id": "E5",
@@ -460,11 +466,12 @@ const D = {
   {
    "id": "E8",
    "gravidade": "alta",
-   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "O app aceita um portal Bitrix24 REAL sem nenhum aviso, e com HABILITAR_ESCRITA_CRM=sim passa a poder gravar nele.",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "uso real",
-   "tarefa": "005"
+   "tarefa": "005",
+   "fechado_por": "006"
   },
   {
    "id": "E9",
@@ -473,7 +480,8 @@ const D = {
    "onde_no_codigo": "",
    "estado": "aberto",
    "origem": "uso real",
-   "tarefa": "005"
+   "tarefa": "005",
+   "em_execucao": "008"
   },
   {
    "id": "G1",
@@ -482,7 +490,8 @@ const D = {
    "onde_no_codigo": "",
    "estado": "aberto",
    "origem": "avaliação do desafio",
-   "tarefa": "007"
+   "tarefa": "007",
+   "em_execucao": "008"
   },
   {
    "id": "G2",
@@ -491,7 +500,8 @@ const D = {
    "onde_no_codigo": "",
    "estado": "aberto",
    "origem": "avaliação do desafio",
-   "tarefa": "007"
+   "tarefa": "007",
+   "em_execucao": "008"
   },
   {
    "id": "G3",
@@ -500,7 +510,38 @@ const D = {
    "onde_no_codigo": "",
    "estado": "aberto",
    "origem": "avaliação do desafio",
-   "tarefa": "007"
+   "tarefa": "007",
+   "em_execucao": "008"
+  },
+  {
+   "id": "H1",
+   "gravidade": "alta",
+   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "arquitetura",
+   "tarefa": "007",
+   "em_execucao": "009"
+  },
+  {
+   "id": "H2",
+   "gravidade": "média",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "007",
+   "em_execucao": "009"
+  },
+  {
+   "id": "H3",
+   "gravidade": "média",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "007",
+   "em_execucao": "009"
   }
  ],
  "riscos": [],
