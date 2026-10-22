@@ -181,7 +181,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--linha);
 
 <script>
 const D = {
- "gerado": "2026-10-21",
+ "gerado": "2026-10-22",
  "pitch": "2026-10-29",
  "publico": true,
  "atores": {
@@ -221,6 +221,22 @@ const D = {
    "testes": 19,
    "branch": "tarefa-004",
    "commit": "48db64b"
+  },
+  {
+   "id": "005",
+   "titulo": "Padronização e consolidação, com escrita no CRM",
+   "estado": "executada",
+   "testes": 25,
+   "branch": "tarefa-005",
+   "commit": "2974d2a"
+  },
+  {
+   "id": "006",
+   "titulo": "fronteira, acesso e escala",
+   "estado": "executada",
+   "testes": 33,
+   "branch": "tarefa-006",
+   "commit": "8a0d17d"
   },
   {
    "id": "004",
@@ -342,35 +358,174 @@ const D = {
    "texto": "Exclusão no Bitrix não chegava ao espelho local",
    "estado": "fechado",
    "onde": "tarefa 003",
-   "tarefa": "002"
+   "tarefa": "002",
+   "onde_no_codigo": ""
   },
   {
    "id": "C1",
    "texto": "Trocar a URL do webhook apaga o espelho e as decisões de duplicados",
-   "estado": "aberto",
+   "estado": "fechado",
    "prazo": "antes da tarefa 005",
-   "tarefa": "003"
+   "tarefa": "003",
+   "fechado_por": "005",
+   "onde_no_codigo": ""
   },
   {
    "id": "A3",
    "texto": "Nenhum controle de acesso ao próprio app",
-   "estado": "aberto",
+   "estado": "fechado",
    "prazo": "antes de publicar na Onnira",
-   "tarefa": "001"
+   "tarefa": "001",
+   "fechado_por": "006",
+   "onde_no_codigo": ""
   },
   {
    "id": "D1",
-   "texto": "O app publicado responde 403 a acesso externo: a Onnira só permite acesso de dentro da plataforma. Não há campo de visibilidade na API pública.",
+   "texto": "Achado de gravidade a classificar em correção. O detalhe fica no repositório privado até ser fechado.",
    "estado": "aberto",
    "prazo": "confirmar no plantão de 22/10, antes do pitch",
-   "tarefa": "deploy"
+   "tarefa": "deploy",
+   "onde_no_codigo": ""
   },
   {
    "id": "D2",
    "tarefa": "deploy",
    "estado": "aberto",
    "prazo": "plantão de 22/10",
-   "texto": "O contêiner da Onnira não alcança o portal Bitrix24: falha de rede em 10,5 s, enquanto o mesmo portal responde em 0,63 s de fora. Sem saída de rede, a integração REST não funciona lá — e é o requisito central do desafio."
+   "texto": "Achado de gravidade a classificar em correção. O detalhe fica no repositório privado até ser fechado.",
+   "onde_no_codigo": ""
+  },
+  {
+   "id": "E1",
+   "texto": "Qualquer visitante lê dados do cliente.",
+   "gravidade": "alta",
+   "onde_no_codigo": "",
+   "estado": "fechado",
+   "origem": "segurança",
+   "tarefa": "005",
+   "fechado_por": "006"
+  },
+  {
+   "id": "E2",
+   "texto": "Visitante dispara escrita ou reversão no CRM.",
+   "gravidade": "alta",
+   "onde_no_codigo": "",
+   "estado": "fechado",
+   "origem": "segurança",
+   "tarefa": "005",
+   "fechado_por": "006"
+  },
+  {
+   "id": "E3",
+   "texto": "Troca pública de portal apaga decisões e histórico de reversão.",
+   "gravidade": "alta",
+   "onde_no_codigo": "",
+   "estado": "fechado",
+   "origem": "segurança",
+   "tarefa": "005",
+   "fechado_por": "006"
+  },
+  {
+   "id": "E4",
+   "texto": "Padronização elimina dígito de celular.",
+   "gravidade": "alta",
+   "onde_no_codigo": "",
+   "estado": "fechado",
+   "origem": "QA ponta a ponta + segurança",
+   "tarefa": "005",
+   "confirmado_por": 2,
+   "fechado_por": "006"
+  },
+  {
+   "id": "E5",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "005"
+  },
+  {
+   "id": "E6",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "005"
+  },
+  {
+   "id": "E8",
+   "gravidade": "alta",
+   "texto": "O app aceita um portal Bitrix24 REAL sem nenhum aviso, e com HABILITAR_ESCRITA_CRM=sim passa a poder gravar nele.",
+   "onde_no_codigo": "",
+   "estado": "fechado",
+   "origem": "uso real",
+   "tarefa": "005",
+   "fechado_por": "006"
+  },
+  {
+   "id": "E9",
+   "gravidade": "média",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "uso real",
+   "tarefa": "005"
+  },
+  {
+   "id": "F1",
+   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "alta",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "006"
+  },
+  {
+   "id": "F2",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "006"
+  },
+  {
+   "id": "F3",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "006"
+  },
+  {
+   "id": "F4",
+   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "baixa",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "006"
+  },
+  {
+   "id": "F5",
+   "gravidade": "alta",
+   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "arquitetura",
+   "tarefa": "006"
+  },
+  {
+   "id": "F6",
+   "gravidade": "média",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "arquitetura",
+   "tarefa": "006"
   }
  ],
  "riscos": [],
