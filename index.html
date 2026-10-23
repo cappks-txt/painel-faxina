@@ -273,10 +273,10 @@ const D = {
   {
    "id": "011",
    "titulo": "escopo mínimo exato, e erro que diz o que fazer",
-   "estado": "executada",
-   "testes": 50,
+   "estado": "conferida",
+   "testes": 59,
    "branch": "tarefa-011",
-   "commit": "30b2ba4"
+   "commit": "d141450"
   },
   {
    "id": "012",
@@ -489,12 +489,14 @@ const D = {
   },
   {
    "id": "E5",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "A releitura não torna a escrita atômica.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "005"
+   "tarefa": "005",
+   "fechado_por": "011",
+   "nota_fechamento": "mesma causa do J1: escrita aplicada mas nao confirmada agora e conferida no CRM antes de decidir o destino da linha"
   },
   {
    "id": "E6",
@@ -537,11 +539,13 @@ const D = {
   {
    "id": "G2",
    "gravidade": "média",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "T8 segue parcial: a interface nunca foi conferida em tela de celular.",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "avaliação do desafio",
-   "tarefa": "007"
+   "tarefa": "007",
+   "fechado_por": "008",
+   "nota_fechamento": "responsividade conferida pelo coordenador no celular em 23/10 -- conferencia humana, a unica prova possivel: o sandbox nao alcanca localhost"
   },
   {
    "id": "G3",
@@ -575,21 +579,23 @@ const D = {
   },
   {
    "id": "I3",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Falha do processo após pode perder o botão de desfazer.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "009"
+   "tarefa": "009",
+   "fechado_por": "011"
   },
   {
    "id": "I4",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Visitante pode bloquear continuamente o login legítimo.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "009"
+   "tarefa": "009",
+   "fechado_por": "011"
   },
   {
    "id": "I5",
@@ -642,12 +648,14 @@ const D = {
   },
   {
    "id": "H4",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Uma edição concorrente pode ser sobrescrita e não recuperada.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "008"
+   "tarefa": "008",
+   "fechado_por": "011",
+   "nota_fechamento": "mesma causa do J1, fechada junto"
   },
   {
    "id": "H5",
@@ -671,21 +679,23 @@ const D = {
   },
   {
    "id": "J1",
-   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Escrita confirmada remotamente pode ficar sem desfazer.",
    "gravidade": "alta",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "010"
+   "tarefa": "010",
+   "fechado_por": "011"
   },
   {
    "id": "J2",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Origem declarada pode contornar o limite de hashes e acumular fila.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "010"
+   "tarefa": "010",
+   "fechado_por": "011"
   },
   {
    "id": "J3",
@@ -695,6 +705,53 @@ const D = {
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "010"
+  },
+  {
+   "id": "L1",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "011"
+  },
+  {
+   "id": "L2",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "011"
+  },
+  {
+   "id": "L3",
+   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "baixa",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "011"
+  },
+  {
+   "id": "K1",
+   "gravidade": "média",
+   "estado": "fechado",
+   "origem": "uso real, 23/10",
+   "arquivos": "app/login/page.tsx",
+   "texto": "O conserto do I6 cobrou preco de usabilidade: para a pagina /login ficar identica nos dois estados, o campo 'Segredo de instalacao' passou a aparecer em TODO login.",
+   "fechado_por": "011",
+   "onde_no_codigo": ""
+  },
+  {
+   "id": "K2",
+   "gravidade": "alta",
+   "estado": "fechado",
+   "fechado_por": "011",
+   "origem": "uso real, 23/10",
+   "arquivos": "app/api/login/route.ts, app/api/senha-inicial/route.ts",
+   "texto": "Os redirects de entrada montavam URL absoluta a partir de req.url, que no Next resolve sempre para localhost.",
+   "onde_no_codigo": ""
   }
  ],
  "riscos": [],
