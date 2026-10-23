@@ -181,7 +181,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--linha);
 
 <script>
 const D = {
- "gerado": "2026-10-22",
+ "gerado": "2026-10-23",
  "pitch": "2026-10-29",
  "publico": true,
  "atores": {
@@ -247,6 +247,22 @@ const D = {
    "commit": "0832c3f"
   },
   {
+   "id": "008",
+   "titulo": "a interface",
+   "estado": "contrato",
+   "testes": 43,
+   "branch": "tarefa-008",
+   "commit": "dbf4926"
+  },
+  {
+   "id": "009",
+   "titulo": "fechar o veredito negativo",
+   "estado": "contrato",
+   "testes": 43,
+   "branch": "tarefa-009",
+   "commit": "268cf36"
+  },
+  {
    "id": "004",
    "titulo": "Cadastros incompletos e indicadores de qualidade",
    "entrega": "F4 e F5",
@@ -281,7 +297,7 @@ const D = {
   {
    "id": "F3",
    "texto": "Padronizar nomes, telefones e e-mails",
-   "estado": "pronto",
+   "estado": "planejado",
    "tarefa": "005"
   },
   {
@@ -342,8 +358,8 @@ const D = {
   {
    "id": "T8",
    "texto": "Interface em português e responsiva",
-   "estado": "em execução",
-   "tarefa": "008",
+   "estado": "parcial",
+   "tarefa": "001",
    "nota": "viewport e media query no código; sem conferência visual em celular"
   },
   {
@@ -367,7 +383,6 @@ const D = {
    "estado": "fechado",
    "onde": "tarefa 003",
    "tarefa": "002",
-   "fechado_por": "002",
    "onde_no_codigo": ""
   },
   {
@@ -471,7 +486,7 @@ const D = {
    "estado": "fechado",
    "origem": "uso real",
    "tarefa": "005",
-   "fechado_por": "006"
+   "fechado_por": "007"
   },
   {
    "id": "E9",
@@ -480,18 +495,17 @@ const D = {
    "onde_no_codigo": "",
    "estado": "aberto",
    "origem": "uso real",
-   "tarefa": "005",
-   "em_execucao": "008"
+   "tarefa": "005"
   },
   {
    "id": "G1",
    "gravidade": "alta",
-   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "A interface não tem sistema visual: 9 linhas de CSS e 6 seletores para 9 telas, sem variáveis de cor, sem escala tipográfica, sem tema escuro.",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "avaliação do desafio",
    "tarefa": "007",
-   "em_execucao": "008"
+   "fechado_por": "008"
   },
   {
    "id": "G2",
@@ -500,48 +514,127 @@ const D = {
    "onde_no_codigo": "",
    "estado": "aberto",
    "origem": "avaliação do desafio",
-   "tarefa": "007",
-   "em_execucao": "008"
+   "tarefa": "007"
   },
   {
    "id": "G3",
    "gravidade": "média",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "O índice de qualidade não tem representação visual.",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "avaliação do desafio",
    "tarefa": "007",
-   "em_execucao": "008"
+   "fechado_por": "008"
+  },
+  {
+   "id": "I1",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "009"
+  },
+  {
+   "id": "I2",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "009"
+  },
+  {
+   "id": "I3",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "009"
+  },
+  {
+   "id": "I4",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "009"
+  },
+  {
+   "id": "I5",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "009"
+  },
+  {
+   "id": "I6",
+   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "baixa",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "009"
   },
   {
    "id": "H1",
-   "gravidade": "alta",
-   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
    "onde_no_codigo": "",
    "estado": "aberto",
-   "origem": "arquitetura",
-   "tarefa": "007",
-   "em_execucao": "009"
+   "origem": "segurança",
+   "tarefa": "008"
   },
   {
    "id": "H2",
+   "texto": "A 201ª entrada tira a primeira alteração da interface de desfazer.",
    "gravidade": "média",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "007",
-   "em_execucao": "009"
+   "tarefa": "008",
+   "fechado_por": "009"
   },
   {
    "id": "H3",
+   "texto": "Qualquer visitante pode impor hashes de senha repetidamente.",
    "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "fechado",
+   "origem": "segurança",
+   "tarefa": "008",
+   "fechado_por": "009"
+  },
+  {
+   "id": "H4",
    "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
    "onde_no_codigo": "",
    "estado": "aberto",
    "origem": "segurança",
-   "tarefa": "007",
-   "em_execucao": "009"
+   "tarefa": "008"
+  },
+  {
+   "id": "H5",
+   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "baixa",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "008"
+  },
+  {
+   "id": "H6",
+   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "baixa",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "008"
   }
  ],
  "riscos": [],
