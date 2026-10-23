@@ -280,6 +280,14 @@ const D = {
   },
   {
    "id": "012",
+   "titulo": "o app nunca mente sobre o que chegou no CRM",
+   "estado": "conferida",
+   "testes": 63,
+   "branch": "tarefa-012",
+   "commit": "0fc9afe"
+  },
+  {
+   "id": "012",
    "titulo": "Assinatura de grupo grande e progresso real da sincronização",
    "entrega": "fecha I5 e E9",
    "escreve_no_crm": false,
@@ -726,12 +734,13 @@ const D = {
   },
   {
    "id": "L3",
-   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "A rota pública antiga ainda engole exceções sem registrar.",
    "gravidade": "baixa",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "011"
+   "tarefa": "011",
+   "fechado_por": "012"
   },
   {
    "id": "K1",
@@ -752,6 +761,33 @@ const D = {
    "arquivos": "app/api/login/route.ts, app/api/senha-inicial/route.ts",
    "texto": "Os redirects de entrada montavam URL absoluta a partir de req.url, que no Next resolve sempre para localhost.",
    "onde_no_codigo": ""
+  },
+  {
+   "id": "L4",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "012"
+  },
+  {
+   "id": "L5",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "012"
+  },
+  {
+   "id": "L6",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "012"
   }
  ],
  "riscos": [],
