@@ -263,6 +263,14 @@ const D = {
    "commit": "268cf36"
   },
   {
+   "id": "010",
+   "titulo": "o desfazer tem que continuar possível, e a porta pública tem que aguentar visita",
+   "estado": "contrato",
+   "testes": 50,
+   "branch": "tarefa-010",
+   "commit": "2eeb6f0"
+  },
+  {
    "id": "004",
    "titulo": "Cadastros incompletos e indicadores de qualidade",
    "entrega": "F4 e F5",
@@ -528,21 +536,23 @@ const D = {
   },
   {
    "id": "I1",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Desfazer do portal antigo fica bloqueado após troca de portal.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "009"
+   "tarefa": "009",
+   "fechado_por": "010"
   },
   {
    "id": "I2",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Rotação ou revogação da chave histórica impede desfazer.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "009"
+   "tarefa": "009",
+   "fechado_por": "010"
   },
   {
    "id": "I3",
@@ -573,21 +583,23 @@ const D = {
   },
   {
    "id": "I6",
-   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "A página pública revela se a instalação já tem administrador.",
    "gravidade": "baixa",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "009"
+   "tarefa": "009",
+   "fechado_por": "010"
   },
   {
    "id": "H1",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Rotação legítima do webhook impede desfazer.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "008"
+   "tarefa": "008",
+   "fechado_por": "010"
   },
   {
    "id": "H2",
@@ -620,21 +632,50 @@ const D = {
   },
   {
    "id": "H5",
-   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "A faixa nova pode identificar produção como fictício.",
    "gravidade": "baixa",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "008"
+   "tarefa": "008",
+   "fechado_por": "010"
   },
   {
    "id": "H6",
+   "texto": "A página pública revela se a conta foi criada.",
+   "gravidade": "baixa",
+   "onde_no_codigo": "",
+   "estado": "fechado",
+   "origem": "segurança",
+   "tarefa": "008",
+   "fechado_por": "010"
+  },
+  {
+   "id": "J1",
+   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "alta",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "010"
+  },
+  {
+   "id": "J2",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "010"
+  },
+  {
+   "id": "J3",
    "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
    "gravidade": "baixa",
    "onde_no_codigo": "",
    "estado": "aberto",
    "origem": "segurança",
-   "tarefa": "008"
+   "tarefa": "010"
   }
  ],
  "riscos": [],
