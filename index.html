@@ -279,19 +279,28 @@ const D = {
    "commit": "30b2ba4"
   },
   {
-   "id": "004",
-   "titulo": "Cadastros incompletos e indicadores de qualidade",
-   "entrega": "F4 e F5",
+   "id": "012",
+   "titulo": "Assinatura de grupo grande e progresso real da sincronização",
+   "entrega": "fecha I5 e E9",
    "escreve_no_crm": false,
    "estado": "futura",
    "testes": null,
    "branch": null
   },
   {
-   "id": "005",
-   "titulo": "Padronização e execução das fusões aprovadas",
-   "entrega": "F3",
-   "escreve_no_crm": true,
+   "id": "013",
+   "titulo": "Destino do webhook e fronteira da chave de comparação",
+   "entrega": "fecha E6 e F6",
+   "escreve_no_crm": false,
+   "estado": "futura",
+   "testes": null,
+   "branch": null
+  },
+  {
+   "id": "—",
+   "titulo": "Os 7 materiais de publicação (vídeo, README, roteiro do pitch)",
+   "entrega": "exigência da banca, não é código",
+   "escreve_no_crm": false,
    "estado": "futura",
    "testes": null,
    "branch": null
@@ -313,8 +322,9 @@ const D = {
   {
    "id": "F3",
    "texto": "Padronizar nomes, telefones e e-mails",
-   "estado": "planejado",
-   "tarefa": "005"
+   "estado": "pronto",
+   "tarefa": "005",
+   "nota": "QA 7, 7b, 8a e 8b: acento preservado, telefone não perde dígito, aplica no portal e desfaz o valor exato"
   },
   {
    "id": "F4",
@@ -361,9 +371,9 @@ const D = {
   {
    "id": "T6",
    "texto": "Respeitar permissões do usuário",
-   "estado": "parcial",
-   "tarefa": "002",
-   "nota": "herdado do webhook; não conferido com usuário restrito"
+   "estado": "pronto",
+   "tarefa": "011",
+   "nota": "escopo exato: o app só configura com `crm` e recusa excesso, nomeando o que desmarcar"
   },
   {
    "id": "T7",
@@ -374,15 +384,16 @@ const D = {
   {
    "id": "T8",
    "texto": "Interface em português e responsiva",
-   "estado": "parcial",
-   "tarefa": "001",
-   "nota": "viewport e media query no código; sem conferência visual em celular"
+   "estado": "pronto",
+   "tarefa": "008",
+   "nota": "sistema visual com 115 seletores, tema escuro e 4 pontos de quebra; responsividade conferida no celular pelo coordenador em 23/10"
   },
   {
    "id": "T9",
    "texto": "Tratamento de erros e logs",
    "estado": "pronto",
-   "tarefa": "001"
+   "tarefa": "011",
+   "nota": "erros por causa, dizendo o que aconteceu, o que significa para o dado e o próximo passo; nenhum catch engole sem registrar"
   },
   {
    "id": "T10",
@@ -691,7 +702,7 @@ const D = {
   {
    "data": "2026-10-22",
    "texto": "Plantão de dúvidas e deploy vazio na Onnira",
-   "estado": "proximo"
+   "estado": "feito"
   },
   {
    "data": "2026-10-29",
