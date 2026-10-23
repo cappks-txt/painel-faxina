@@ -78,6 +78,10 @@ section{margin-bottom:34px}
 .tarefa.e-mesclada,.tarefa.e-conferida{border-left-color:var(--pronto)}
 .tarefa.e-executada{border-left-color:var(--parcial)}
 .tarefa.e-futura{border-left-color:var(--linha);background:transparent;box-shadow:none;border-style:dashed}
+.meta .data{font-variant-numeric:tabular-nums;color:var(--ink-3)}
+.meta a.versao{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+.meta a.versao:hover{border-bottom-color:var(--accent)}
+.meta a.versao:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
 .tarefa .id{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:25px;font-weight:700;color:var(--ink-3)}
 .tarefa.e-conferida .id,.tarefa.e-mesclada .id{color:var(--pronto)}
 .tarefa .tit{font-weight:500;line-height:1.35}
@@ -196,7 +200,9 @@ const D = {
    "estado": "conferida",
    "testes": 4,
    "branch": "tarefa-001-conexao",
-   "commit": "d481195"
+   "commit": "d481195",
+   "data": "2026-10-21",
+   "sha": "d481195"
   },
   {
    "id": "002",
@@ -204,7 +210,9 @@ const D = {
    "estado": "conferida",
    "testes": 10,
    "branch": "tarefa-002-sincronizacao",
-   "commit": "d194342"
+   "commit": "d194342",
+   "data": "2026-10-21",
+   "sha": "d194342"
   },
   {
    "id": "003",
@@ -212,102 +220,160 @@ const D = {
    "estado": "conferida",
    "testes": 16,
    "branch": "tarefa-003",
-   "commit": "853d788"
+   "commit": "853d788",
+   "data": "2026-10-21",
+   "sha": "853d788"
   },
   {
    "id": "004",
    "titulo": "Cadastros com problema e indicadores de qualidade",
    "estado": "conferida",
-   "testes": 19,
+   "testes": 20,
    "branch": "tarefa-004",
-   "commit": "48db64b"
+   "commit": "48db64b",
+   "data": "2026-10-21",
+   "sha": "48db64b"
   },
   {
    "id": "005",
    "titulo": "Padronização e consolidação, com escrita no CRM",
    "estado": "conferida",
-   "testes": 25,
+   "testes": 26,
    "branch": "tarefa-005",
-   "commit": "2974d2a"
+   "commit": "2974d2a",
+   "data": "2026-10-22",
+   "sha": "2974d2a"
   },
   {
    "id": "006",
    "titulo": "fronteira, acesso e escala",
    "estado": "conferida",
-   "testes": 33,
+   "testes": 34,
    "branch": "tarefa-006",
-   "commit": "8a0d17d"
+   "commit": "8a0d17d",
+   "data": "2026-10-22",
+   "sha": "8a0d17d"
   },
   {
    "id": "007",
    "titulo": "fechar o que a 006 deixou aberto",
    "estado": "conferida",
-   "testes": 38,
+   "testes": 39,
    "branch": "tarefa-007",
-   "commit": "0832c3f"
+   "commit": "0832c3f",
+   "data": "2026-10-22",
+   "sha": "0832c3f"
   },
   {
    "id": "008",
    "titulo": "a interface",
    "estado": "conferida",
-   "testes": 43,
+   "testes": 44,
    "branch": "tarefa-008",
-   "commit": "dbf4926"
+   "commit": "dbf4926",
+   "data": "2026-10-23",
+   "sha": "dbf4926"
   },
   {
    "id": "009",
    "titulo": "fechar o veredito negativo",
    "estado": "conferida",
-   "testes": 43,
+   "testes": 44,
    "branch": "tarefa-009",
-   "commit": "268cf36"
+   "commit": "268cf36",
+   "data": "2026-10-23",
+   "sha": "268cf36"
   },
   {
    "id": "010",
    "titulo": "o desfazer tem que continuar possível, e a porta pública tem que aguentar visita",
    "estado": "conferida",
-   "testes": 50,
+   "testes": 51,
    "branch": "tarefa-010",
-   "commit": "a50b1b2"
+   "commit": "a50b1b2",
+   "data": "2026-10-23",
+   "sha": "a50b1b2"
   },
   {
    "id": "011",
    "titulo": "escopo mínimo exato, e erro que diz o que fazer",
    "estado": "conferida",
-   "testes": 59,
+   "testes": 60,
    "branch": "tarefa-011",
-   "commit": "d141450"
+   "commit": "d141450",
+   "data": "2026-10-23",
+   "sha": "d141450"
   },
   {
    "id": "012",
    "titulo": "o app nunca mente sobre o que chegou no CRM",
    "estado": "conferida",
-   "testes": 63,
+   "testes": 64,
    "branch": "tarefa-012",
-   "commit": "0fc9afe"
-  },
-  {
-   "id": "012",
-   "titulo": "Assinatura de grupo grande e progresso real da sincronização",
-   "entrega": "fecha I5 e E9",
-   "escreve_no_crm": false,
-   "estado": "futura",
-   "testes": null,
-   "branch": null
+   "commit": "db6909d",
+   "data": "2026-10-23",
+   "sha": "db6909d"
   },
   {
    "id": "013",
-   "titulo": "Destino do webhook e fronteira da chave de comparação",
-   "entrega": "fecha E6 e F6",
+   "titulo": "fechar a história da escrita parcial, de verdade",
+   "estado": "conferida",
+   "testes": 69,
+   "branch": "tarefa-013",
+   "commit": "330076f",
+   "data": "2026-10-23",
+   "sha": "330076f"
+  },
+  {
+   "id": "014",
+   "titulo": "o que a operação realmente sofre, e o app ainda não mede",
+   "estado": "conferida",
+   "testes": 73,
+   "branch": "tarefa-014",
+   "commit": "00c9df0",
+   "data": "2026-10-23",
+   "sha": "00c9df0"
+  },
+  {
+   "id": "015",
+   "titulo": "A escrita não mente: falha local e restauração incerta",
+   "entrega": "fecha L4, L5, M2, M3",
+   "escreve_no_crm": true,
+   "estado": "futura",
+   "testes": null,
+   "branch": null
+  },
+  {
+   "id": "016",
+   "titulo": "Nada pode ser forjado: origem do pedido de escrita",
+   "entrega": "fecha L6, M4, N2",
+   "escreve_no_crm": true,
+   "estado": "futura",
+   "testes": null,
+   "branch": null
+  },
+  {
+   "id": "017",
+   "titulo": "Respeitar o CRM do cliente: freio e destino do webhook",
+   "entrega": "fecha N3, E6",
    "escreve_no_crm": false,
    "estado": "futura",
    "testes": null,
    "branch": null
   },
   {
-   "id": "—",
-   "titulo": "Os 7 materiais de publicação (vídeo, README, roteiro do pitch)",
-   "entrega": "exigência da banca, não é código",
+   "id": "018",
+   "titulo": "O operador enxerga o que acontece",
+   "entrega": "fecha E9, N1, N4",
+   "escreve_no_crm": false,
+   "estado": "futura",
+   "testes": null,
+   "branch": null
+  },
+  {
+   "id": "019",
+   "titulo": "Escala: assinatura de grupo grande",
+   "entrega": "fecha I5",
    "escreve_no_crm": false,
    "estado": "futura",
    "testes": null,
@@ -716,21 +782,25 @@ const D = {
   },
   {
    "id": "L1",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "O lote perde o resultado parcial quando uma chave posterior fica inválida.",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "011"
+   "tarefa": "011",
+   "fechado_por": "012",
+   "nota_fechamento": "superado por L4: a 012 fechou a falha remota e o residuo local virou L4"
   },
   {
    "id": "L2",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Desfazer aplicado no CRM pode deixar o histórico original marcado como .",
    "gravidade": "média",
    "onde_no_codigo": "",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "011"
+   "tarefa": "011",
+   "fechado_por": "012",
+   "nota_fechamento": "superado por L5: o residuo da restauracao incerta virou L5"
   },
   {
    "id": "L3",
@@ -788,6 +858,89 @@ const D = {
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "012"
+  },
+  {
+   "id": "N1",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "014"
+  },
+  {
+   "id": "N2",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "014"
+  },
+  {
+   "id": "N3",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "014"
+  },
+  {
+   "id": "N4",
+   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "baixa",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "014"
+  },
+  {
+   "id": "M1",
+   "texto": "Achado de gravidade alta em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "alta",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "013"
+  },
+  {
+   "id": "M2",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "013"
+  },
+  {
+   "id": "M3",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "013"
+  },
+  {
+   "id": "M4",
+   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "gravidade": "média",
+   "onde_no_codigo": "",
+   "estado": "aberto",
+   "origem": "segurança",
+   "tarefa": "013"
+  },
+  {
+   "id": "M5",
+   "texto": "Sonda de DNS sem prazo pode segurar a subida do app.",
+   "gravidade": "baixa",
+   "onde_no_codigo": "",
+   "estado": "fechado",
+   "origem": "segurança",
+   "tarefa": "013",
+   "fechado_por": "013",
+   "nota_fechamento": "a revisao viu a versao anterior ao conserto: o teto total de 45s e a execucao em paralelo com o servidor ja estavam no commit"
   }
  ],
  "riscos": [],
@@ -837,6 +990,7 @@ document.getElementById("fluxo").append(...PASSOS.map(([quem,tit,desc])=>{
 }));
 
 const trilho = document.getElementById("trilho");
+const REPO = "https://github.com/cappks-txt/Faxina-do-CRM";
 for (const t of D.tarefas) {
   const [cls,rot] = ESTADO[t.estado] || ESTADO.contrato;
   const linha = el("div","tarefa e-"+t.estado);
@@ -844,7 +998,14 @@ for (const t of D.tarefas) {
   const meio = el("div");
   meio.append(el("div","tit",t.titulo));
   const meta = el("div","meta");
-  if (t.branch) meta.append(el("span","mono",t.branch + (t.commit? " · "+t.commit : "")));
+  if (t.data) meta.append(el("span","data",t.data.split("-").reverse().join("/")));
+  if (t.branch) {
+    const alvo = t.sha ? REPO+"/commit/"+t.sha : REPO+"/tree/"+t.branch;
+    const a = document.createElement("a");
+    a.className = "mono versao"; a.href = alvo; a.target = "_blank"; a.rel = "noopener";
+    a.textContent = t.branch + (t.sha ? " @ " + t.sha : "");
+    meta.append(a);
+  }
   if (t.testes) meta.append(el("span",null,t.testes+" testes passando"));
   const abertos = (D.achados||[]).filter(a=>a.estado!=="fechado" && a.tarefa===t.id);
   if (abertos.length) meta.append(el("span",null,"achado aberto "+abertos.map(a=>a.id).join(", ")));
