@@ -187,11 +187,11 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--linha);
 const D = {
  "gerado": "2026-10-27",
  "pitch": "2026-10-29",
- "publico": true,
+ "publico": false,
  "atores": {
   "claude": "Claude",
   "codex": "Codex",
-  "humano": "Coordenação"
+  "humano": "Erick"
  },
  "tarefas": [
   {
@@ -327,12 +327,12 @@ const D = {
   {
    "id": "014",
    "titulo": "o que a operação realmente sofre, e o app ainda não mede",
-   "estado": "conferida",
+   "estado": "executada",
    "testes": 78,
    "branch": "tarefa-014",
-   "commit": "bf7b187",
+   "commit": "c3ec79a",
    "data": "2026-10-23",
-   "sha": "bf7b187"
+   "sha": "c3ec79a"
   },
   {
    "id": "015",
@@ -340,9 +340,9 @@ const D = {
    "estado": "conferida",
    "testes": 87,
    "branch": "tarefa-015",
-   "commit": "57013a7",
-   "data": "2026-10-26",
-   "sha": "57013a7"
+   "commit": "4d30a4d",
+   "data": "2026-10-24",
+   "sha": "4d30a4d"
   },
   {
    "id": "016",
@@ -353,16 +353,6 @@ const D = {
    "commit": "b509f0b",
    "data": "2026-10-27",
    "sha": "b509f0b"
-  },
-  {
-   "id": "017",
-   "titulo": "três regras que vieram de atendimento real",
-   "estado": "contrato",
-   "testes": 82,
-   "branch": "tarefa-017",
-   "commit": "349a8a0",
-   "data": "2026-10-26",
-   "sha": "349a8a0"
   },
   {
    "id": "018",
@@ -505,8 +495,7 @@ const D = {
    "texto": "Exclusão no Bitrix não chegava ao espelho local",
    "estado": "fechado",
    "onde": "tarefa 003",
-   "tarefa": "002",
-   "onde_no_codigo": ""
+   "tarefa": "002"
   },
   {
    "id": "C1",
@@ -514,8 +503,7 @@ const D = {
    "estado": "fechado",
    "prazo": "antes da tarefa 005",
    "tarefa": "003",
-   "fechado_por": "005",
-   "onde_no_codigo": ""
+   "fechado_por": "005"
   },
   {
    "id": "A3",
@@ -523,30 +511,27 @@ const D = {
    "estado": "fechado",
    "prazo": "antes de publicar na Onnira",
    "tarefa": "001",
-   "fechado_por": "006",
-   "onde_no_codigo": ""
+   "fechado_por": "006"
   },
   {
    "id": "D1",
-   "texto": "Achado de gravidade a classificar em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "O app publicado responde 403 a acesso externo: a Onnira só permite acesso de dentro da plataforma. Não há campo de visibilidade na API pública.",
    "estado": "aberto",
    "prazo": "confirmar no plantão de 22/10, antes do pitch",
-   "tarefa": "deploy",
-   "onde_no_codigo": ""
+   "tarefa": "deploy"
   },
   {
    "id": "D2",
    "tarefa": "deploy",
    "estado": "aberto",
    "prazo": "plantão de 22/10",
-   "texto": "Achado de gravidade a classificar em correção. O detalhe fica no repositório privado até ser fechado.",
-   "onde_no_codigo": ""
+   "texto": "O contêiner da Onnira não alcança o portal Bitrix24: falha de rede em 10,5 s, enquanto o mesmo portal responde em 0,63 s de fora. Sem saída de rede, a integração REST não funciona lá — e é o requisito central do desafio."
   },
   {
    "id": "E1",
-   "texto": "Qualquer visitante lê dados do cliente.",
+   "texto": "Qualquer visitante lê dados do cliente. Depois que alguém configura e sincroniza um portal, abrir `/padronizacao` na URL pública entrega nomes, telefones, e-mails, valores anteriores e novos do histórico; `/duplicados` entrega membros e motivos. O único controle é a existência da configuração global",
    "gravidade": "alta",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/padronizacao/page.tsx:6`, `app/duplicados/page.tsx:10-17`, `lib/padronizacao/index.ts:23-24`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "005",
@@ -554,9 +539,9 @@ const D = {
   },
   {
    "id": "E2",
-   "texto": "Visitante dispara escrita ou reversão no CRM.",
+   "texto": "Visitante dispara escrita ou reversão no CRM. Com `HABILITAR_ESCRITA_CRM=sim` e um webhook configurado com escopo `crm`, basta buscar uma chave exibida em `/padronizacao` e enviar `POST /api/padronizacao` com `{\"acao\":\"aplicar\",\"chaves\":[\"<chave exibida>\"]}`. `{\"acao\":\"desfazer\",\"id\":1}` tenta resta",
    "gravidade": "alta",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/padronizacao/route.ts:5-16`, `app/api/duplicados/route.ts:10-27`, `lib/padronizacao/index.ts:60-61`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "005",
@@ -564,9 +549,9 @@ const D = {
   },
   {
    "id": "E3",
-   "texto": "Troca pública de portal apaga decisões e histórico de reversão.",
+   "texto": "Troca pública de portal apaga decisões e histórico de reversão. Um terceiro com um webhook próprio válido envia `POST /api/configuracao` com `{\"webhook\":\"https://portal-ficticio.invalid/rest/7/chave-ficticia/\",\"confirmarLimpeza\":true}`. Depois de `profile` e `scope`, `salvarConfiguracao` executa `DE",
    "gravidade": "alta",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/configuracao/route.ts:9-17,22-33`, `lib/configuracao.ts:38-52`, `app/configuracao/wizard.tsx:39-40`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "005",
@@ -574,9 +559,9 @@ const D = {
   },
   {
    "id": "E4",
-   "texto": "Padronização elimina dígito de celular.",
+   "texto": "Padronização elimina dígito de celular. O canônico remove o `9` de um telefone de 11 dígitos; a proposta então grava o resultado de oito dígitos locais. O próprio teste usa `11 98888-7777` e confirma a escrita de `+55 (11) 8888-7777`. Uma pessoa que confirma a proposta perde o número original no CRM",
    "gravidade": "alta",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/duplicados/index.ts:13-22`, `lib/padronizacao/index.ts:18,24,49`, `tests/padronizacao.test.mjs:22`",
    "estado": "fechado",
    "origem": "QA ponta a ponta + segurança",
    "tarefa": "005",
@@ -585,9 +570,9 @@ const D = {
   },
   {
    "id": "E5",
-   "texto": "A releitura não torna a escrita atômica.",
+   "texto": "A releitura não torna a escrita atômica. O app chama `crm.*.get`, confere o valor e só depois chama `crm.*.update`, sob um freio que pode criar pelo menos 500 ms de intervalo. Se outra pessoa editar o mesmo campo nesse intervalo, o `update` sobrescreve a edição nova, pois não envia versão ou condiçã",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:49`, `lib/sincronizacao/index.ts:46-61`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "005",
@@ -596,9 +581,9 @@ const D = {
   },
   {
    "id": "E6",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Webhook público permite requisições a destino arbitrário. A validação exige HTTPS e o caminho `/rest/...`, mas aceita qualquer host e porta. Um visitante pode enviar `POST /api/configuracao` com `https://127.0.0.1:8443/rest/7/chave-ficticia/`; o servidor tenta `profile.json` nesse destino interno. U",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/bitrix/client.ts:11-18,44-48,64`, `app/api/configuracao/route.ts:9-15,23-24`",
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "005"
@@ -606,8 +591,8 @@ const D = {
   {
    "id": "E8",
    "gravidade": "alta",
-   "texto": "O app aceita um portal Bitrix24 REAL sem nenhum aviso, e com HABILITAR_ESCRITA_CRM=sim passa a poder gravar nele.",
-   "onde_no_codigo": "",
+   "texto": "O app aceita um portal Bitrix24 REAL sem nenhum aviso, e com HABILITAR_ESCRITA_CRM=sim passa a poder gravar nele. Em 22/10 o portal da Br24 foi conectado por engano a uma instância de teste; nada foi escrito por sorte, não por proteção.",
+   "onde_no_codigo": "app/api/configuracao/route.ts, lib/configuracao.ts",
    "estado": "fechado",
    "origem": "uso real",
    "tarefa": "005",
@@ -616,8 +601,8 @@ const D = {
   {
    "id": "E9",
    "gravidade": "média",
-   "texto": "Sincronização longa não mostra progresso: com 32 mil contatos a 2 req/s leva dezenas de minutos e a tela parece travada.",
-   "onde_no_codigo": "",
+   "texto": "Sincronização longa não mostra progresso: com 32 mil contatos a 2 req/s leva dezenas de minutos e a tela parece travada. O usuário não tem como saber se está funcionando ou pendurado.",
+   "onde_no_codigo": "app/sincronizacao/, app/api/sincronizacao/route.ts",
    "estado": "fechado",
    "origem": "uso real",
    "tarefa": "005",
@@ -626,8 +611,8 @@ const D = {
   {
    "id": "G1",
    "gravidade": "alta",
-   "texto": "A interface não tem sistema visual: 9 linhas de CSS e 6 seletores para 9 telas, sem variáveis de cor, sem escala tipográfica, sem tema escuro.",
-   "onde_no_codigo": "",
+   "texto": "A interface não tem sistema visual: 9 linhas de CSS e 6 seletores para 9 telas, sem variáveis de cor, sem escala tipográfica, sem tema escuro. O app roda no padrão do navegador. Apresentação vale 30% da nota e Facilidade de uso 15% — juntas pesam mais que Tecnologias.",
+   "onde_no_codigo": "app/style.css, todas as rotas",
    "estado": "fechado",
    "origem": "avaliação do desafio",
    "tarefa": "007",
@@ -636,8 +621,8 @@ const D = {
   {
    "id": "G2",
    "gravidade": "média",
-   "texto": "T8 segue parcial: a interface nunca foi conferida em tela de celular.",
-   "onde_no_codigo": "",
+   "texto": "T8 segue parcial: a interface nunca foi conferida em tela de celular. O card exige responsividade e é item avaliado.",
+   "onde_no_codigo": "app/",
    "estado": "fechado",
    "origem": "avaliação do desafio",
    "tarefa": "007",
@@ -647,8 +632,8 @@ const D = {
   {
    "id": "G3",
    "gravidade": "média",
-   "texto": "O índice de qualidade não tem representação visual.",
-   "onde_no_codigo": "",
+   "texto": "O índice de qualidade não tem representação visual. É o argumento central do pitch (a base melhorando) e hoje é um número solto no texto.",
+   "onde_no_codigo": "app/qualidade, app/page.tsx",
    "estado": "fechado",
    "origem": "avaliação do desafio",
    "tarefa": "007",
@@ -656,9 +641,9 @@ const D = {
   },
   {
    "id": "I1",
-   "texto": "Desfazer do portal antigo fica bloqueado após troca de portal.",
+   "texto": "Desfazer do portal antigo fica bloqueado após troca de portal. Salvar um webhook de outro portal põe `escrita_habilitada=0`. Mesmo com uma alteração aplicada no portal antigo, `POST /api/padronizacao` com `{\"acao\":\"desfazer\",\"id\":1}` retorna 503 antes de ler o histórico e chamar a conexão de origem.",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/padronizacao/route.ts:8-15`; `lib/configuracao.ts:65-69`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "009",
@@ -666,9 +651,9 @@ const D = {
   },
   {
    "id": "I2",
-   "texto": "Rotação ou revogação da chave histórica impede desfazer.",
+   "texto": "Rotação ou revogação da chave histórica impede desfazer. Uma alteração guarda o webhook completo usado na escrita; o desfazer sempre usa esse valor, mesmo após salvar uma chave nova válida para o mesmo portal e usuário. Se o operador revogar a chave antiga, o `crm.*.get` de desfazer falha e a altera",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:57,70`; `lib/configuracao.ts:73-81`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "009",
@@ -676,9 +661,9 @@ const D = {
   },
   {
    "id": "I3",
-   "texto": "Falha do processo após pode perder o botão de desfazer.",
+   "texto": "Falha do processo após `crm.*.update` pode perder o botão de desfazer. `executarSemFila` grava `pendente`, chama a atualização remota e só depois marca a linha `aplicado`. Se o processo ou contêiner cair após o Bitrix aceitar a atualização e antes do `UPDATE historico_alteracoes`, a linha permanece ",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:57,70`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "009",
@@ -686,9 +671,9 @@ const D = {
   },
   {
    "id": "I4",
-   "texto": "Visitante pode bloquear continuamente o login legítimo.",
+   "texto": "Visitante pode bloquear continuamente o login legítimo. O contador de cinco tentativas por minuto é global ao processo e conta inclusive senhas malformadas. Sem sessão, cinco POSTs para `/api/login` esgotam a janela; qualquer senha correta enviada pelo operador nos 60 segundos seguintes recebe o mes",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/autenticacao.ts:6-14`; `app/api/login/route.ts:4`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "009",
@@ -696,18 +681,18 @@ const D = {
   },
   {
    "id": "I5",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "O teto de 500 não limita o tamanho da assinatura nem sua renderização. Para um grupo com mais de 500 membros, `idsDoGrupo` ainda materializa *todos* os IDs e `JSON.stringify([entidade,ids])` grava essa lista como chave primária. A listagem devolve a assinatura inteira ao componente cliente mesmo qua",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/duplicados/index.ts:112-120`; `app/duplicados/page.tsx:13`",
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "009"
   },
   {
    "id": "I6",
-   "texto": "A página pública revela se a instalação já tem administrador.",
+   "texto": "A página pública revela se a instalação já tem administrador. Um GET anônimo a `/login` muda a ação do formulário de `/api/senha-inicial` para `/api/login`, além de trocar texto e campo de segredo. Isso permite escolher o alvo de tentativas de instalação ou login, sem expor portal, cadastro ou webho",
    "gravidade": "baixa",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/login/page.tsx:3`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "009",
@@ -715,9 +700,9 @@ const D = {
   },
   {
    "id": "H1",
-   "texto": "Rotação legítima do webhook impede desfazer.",
+   "texto": "Rotação legítima do webhook impede desfazer. Após aplicar uma correção, o operador revoga a chave antiga e configura outra do mesmo portal e usuário. `desfazerAlteracao` usa a chave guardada no histórico; o `crm.*.get` é recusado e a correção fica aplicada. A configuração nova não substitui a chave ",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:68`; `lib/configuracao.ts:69,73-81`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "008",
@@ -725,9 +710,9 @@ const D = {
   },
   {
    "id": "H2",
-   "texto": "A 201ª entrada tira a primeira alteração da interface de desfazer.",
+   "texto": "A 201ª entrada tira a primeira alteração da interface de desfazer. `listarHistorico` entrega só os 200 IDs mais recentes, sem paginação. Após 201 aplicações ou falhas, a primeira aplicação ainda existe no SQLite, mas seu ID e botão deixam de aparecer; a API exige esse ID para desfazer. Média pela pe",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:25`; `app/padronizacao/page.tsx:7`; `app/padronizacao/painel.tsx:10`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "008",
@@ -735,9 +720,9 @@ const D = {
   },
   {
    "id": "H3",
-   "texto": "Qualquer visitante pode impor hashes de senha repetidamente.",
+   "texto": "Qualquer visitante pode impor hashes de senha repetidamente. POSTs anônimos para `/api/login` com senhas de 12 a 128 caracteres chamam `scryptSync` antes da espera de um segundo, sem controle de taxa prévio. Requisições simultâneas consomem CPU da instância de 512 MB e atrasam o acesso do operador. ",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/autenticacao.ts:34`; `app/api/login/route.ts:4`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "008",
@@ -745,9 +730,9 @@ const D = {
   },
   {
    "id": "H4",
-   "texto": "Uma edição concorrente pode ser sobrescrita e não recuperada.",
+   "texto": "Uma edição concorrente pode ser sobrescrita e não recuperada. O app lê um campo no Bitrix e depois envia `crm.*.update` sem versão ou condição. Se outra pessoa alterar o campo entre as chamadas, o app grava a proposta e registra como anterior apenas o valor lido antes da edição concorrente. O botão ",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:55`; `lib/sincronizacao/index.ts:46-67`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "008",
@@ -756,9 +741,9 @@ const D = {
   },
   {
    "id": "H5",
-   "texto": "A faixa nova pode identificar produção como fictício.",
+   "texto": "A faixa nova pode identificar produção como fictício. Um portal real com host que contenha `ficticio` ou `localhost`, por exemplo `crm-localhost.exemplo.com`, é classificado como produção na validação, mas aparece com rótulo e cor de “Portal fictício” depois de conectado. O operador pode interpretar",
    "gravidade": "baixa",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/layout.tsx:14`; `lib/configuracao.ts:40`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "008",
@@ -766,9 +751,9 @@ const D = {
   },
   {
    "id": "H6",
-   "texto": "A página pública revela se a conta foi criada.",
+   "texto": "A página pública revela se a conta foi criada. Um visitante abre `/login` e vê `Criar senha e entrar` e o campo de segredo apenas antes da instalação; depois vê `Entrar`. Isso permite concentrar tentativas no estágio de instalação. Não entrega webhook ou cadastro; achado anterior ainda aberto.",
    "gravidade": "baixa",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/login/page.tsx:3`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "008",
@@ -776,9 +761,9 @@ const D = {
   },
   {
    "id": "J1",
-   "texto": "Escrita confirmada remotamente pode ficar sem desfazer.",
+   "texto": "Escrita confirmada remotamente pode ficar sem desfazer. `executarSemFila` insere `pendente`, chama `crm.*.update` e captura *qualquer* erro posterior marcando a linha `falha`. Cenário: o Bitrix aplica a atualização, mas a resposta se perde, vem inválida, excede o tempo limite ou a atualização do esp",
    "gravidade": "alta",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:57,72`; `app/padronizacao/painel.tsx:10`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "010",
@@ -786,9 +771,9 @@ const D = {
   },
   {
    "id": "J2",
-   "texto": "Origem declarada pode contornar o limite de hashes e acumular fila.",
+   "texto": "Origem declarada pode contornar o limite de hashes e acumular fila. O app usa `x-real-ip` ou o primeiro valor de `x-forwarded-for` como chave sem provar que foi escrito por proxy confiável. Se esses cabeçalhos chegarem do cliente, um visitante faz POSTs para `/api/login` com senha de 12 caracteres e",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/login/route.ts:9-13`; `lib/autenticacao.ts:10-24`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "010",
@@ -796,18 +781,18 @@ const D = {
   },
   {
    "id": "J3",
-   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "O bloqueio do operador continua possível quando duas pessoas compartilham a mesma origem vista pelo app. Cinco POSTs anônimos de uma rede NAT, proxy corporativo ou saída compartilhada consomem a franquia daquela origem; a senha correta do operador vindo da mesma origem recebe 401 até a janela virar.",
    "gravidade": "baixa",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/login/route.ts:9-11`; `lib/autenticacao.ts:10-17`",
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "010"
   },
   {
    "id": "L1",
-   "texto": "O lote perde o resultado parcial quando uma chave posterior fica inválida.",
+   "texto": "O lote perde o resultado parcial quando uma chave posterior fica inválida. Envie `POST /api/padronizacao` autenticado, com `acao:\"aplicar\"`, uma primeira chave válida e uma segunda chave desatualizada que permaneceu na seleção da tela após sincronização. A primeira é aplicada no CRM; `aplicarSelecio",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:69`; `app/api/padronizacao/route.ts:18`; `app/padronizacao/painel.tsx:9`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "011",
@@ -816,9 +801,9 @@ const D = {
   },
   {
    "id": "L2",
-   "texto": "Desfazer aplicado no CRM pode deixar o histórico original marcado como .",
+   "texto": "Desfazer aplicado no CRM pode deixar o histórico original marcado como `aplicado`. Ao desfazer uma linha aplicada, o código cria uma segunda escrita para restaurar `anterior` e só marca a linha original como `revertido` se a segunda linha voltar `aplicado`. Se o Bitrix aplicar a restauração e a resp",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:100-105,108-112`; `app/padronizacao/painel.tsx:9-10`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "011",
@@ -827,9 +812,9 @@ const D = {
   },
   {
    "id": "L3",
-   "texto": "A rota pública antiga ainda engole exceções sem registrar.",
+   "texto": "A rota pública antiga ainda engole exceções sem registrar. Faça `POST /api/senha-inicial` com corpo de formulário cuja leitura lance exceção: `.catch(()=>null)` a descarta. Se `criarSenha` lançar por falha do SQLite, o `catch` também devolve 503 sem logar a causa. O operador só vê a mensagem genéric",
    "gravidade": "baixa",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/senha-inicial/route.ts:4`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "011",
@@ -841,9 +826,8 @@ const D = {
    "estado": "fechado",
    "origem": "uso real, 23/10",
    "arquivos": "app/login/page.tsx",
-   "texto": "O conserto do I6 cobrou preco de usabilidade: para a pagina /login ficar identica nos dois estados, o campo 'Segredo de instalacao' passou a aparecer em TODO login.",
-   "fechado_por": "011",
-   "onde_no_codigo": ""
+   "texto": "O conserto do I6 cobrou preco de usabilidade: para a pagina /login ficar identica nos dois estados, o campo 'Segredo de instalacao' passou a aparecer em TODO login. O operador de rotina ve um campo que nao sabe preencher. Nao bloqueia -- o campo e opcional e a entrada funciona em branco --, mas parece que bloqueia. Encontrado pelo coordenador no primeiro acesso pelo celular. Pesa em Facilidade de uso, 15% da nota da banca. Saida proposta: manter a pagina identica nos dois estados, recolhendo o campo atras de um <details> 'Primeira entrada?'. O HTML renderizado continua o mesmo independente de haver administrador, entao o I6 segue fechado, e o operador comum nunca ve o campo.",
+   "fechado_por": "011"
   },
   {
    "id": "K2",
@@ -852,14 +836,13 @@ const D = {
    "fechado_por": "011",
    "origem": "uso real, 23/10",
    "arquivos": "app/api/login/route.ts, app/api/senha-inicial/route.ts",
-   "texto": "Os redirects de entrada montavam URL absoluta a partir de req.url, que no Next resolve sempre para localhost.",
-   "onde_no_codigo": ""
+   "texto": "Os redirects de entrada montavam URL absoluta a partir de req.url, que no Next resolve sempre para localhost. Quem acessasse de outro aparelho -- ou da URL publica atras do proxy -- era mandado ao localhost DELE e recebia conexao recusada. Encontrado pelo coordenador ao abrir no celular; nenhuma revisao pegaria, porque dentro do servidor localhost funciona. Fechado com Location relativo, que o navegador resolve contra a origem que pediu, sem confiar em cabecalho. Teste prova que reprova sem o conserto."
   },
   {
    "id": "L4",
-   "texto": "O resultado parcial ainda se perde se o trabalho local posterior ao lote falhar.",
+   "texto": "O resultado parcial ainda se perde se o trabalho local posterior ao lote falhar. `aplicarSelecionadas` só devolve `out` depois de `atualizarContadorPropostas`, fora do `try` de cada item. Numa instância que esgota o espaço de `./data` durante a atualização do contador, a primeira chave já pode ter s",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:70`; `app/api/padronizacao/route.ts:17-18`; `app/api/duplicados/route.ts:29-38`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "012",
@@ -867,27 +850,27 @@ const D = {
   },
   {
    "id": "L5",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "A tentativa incerta de desfazer oferece um segundo botão que pode refazer a correção. O Bitrix aceita a restauração, mas a resposta se perde; a consulta imediata de `:107` também falha durante a mesma interrupção de rede. O código conserva a linha original como `aplicado`, a segunda como `falha` e d",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:103-119`; `app/padronizacao/painel.tsx:9-10`",
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "012"
   },
   {
    "id": "L6",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Origem do pedido de escrita não é verificada. Com o operador autenticado em `app.exemplo.com`, JavaScript numa origem controlada por terceiro em `outro.exemplo.com` pode enviar `fetch(\"https://app.exemplo.com/api/padronizacao\", {method:\"POST\",mode:\"no-cors\",credentials:\"include\",headers:{\"Content-Ty",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/padronizacao/route.ts:7-15`; `app/api/duplicados/route.ts:12-29`; `app/api/configuracao/route.ts:10-22`; `lib/autenticacao.ts:60-63`",
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "012"
   },
   {
    "id": "N1",
-   "texto": "Campo escolhido depois da primeira sincronização fica sem valores para registros antigos.",
+   "texto": "Campo escolhido depois da primeira sincronização fica sem valores para registros antigos. Sincronize uma base de 32 mil contatos, escolha então um campo de CPF e um campo esperado em `/qualidade`, e sincronize novamente sem editar os contatos no Bitrix. A consulta incremental conserva `maior_date_mo",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/sincronizacao/index.ts:143,176,203`; `app/qualidade/campos.tsx:24,38`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "014",
@@ -895,27 +878,27 @@ const D = {
   },
   {
    "id": "N2",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Uma origem irmã pode mudar silenciosamente as regras de análise. Com sessão ativa em `app.exemplo.com`, código em `outro.exemplo.com` envia `fetch(\"https://app.exemplo.com/api/qualidade\", {method:\"POST\",mode:\"no-cors\",credentials:\"include\",headers:{\"Content-Type\":\"text/plain\"},body:JSON.stringify({a",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/qualidade/route.ts:12-18,33-39`; `lib/autenticacao.ts:60-63`",
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "014"
   },
   {
    "id": "N3",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Descoberta de campos não respeita o freio REST. Um `POST /api/qualidade` com `{\"acao\":\"descobrir\"}` faz três chamadas diretas a `chamarBitrix` em sequência, sem `freioCompartilhado`. Se o portal responde cada lista em menos de 500 ms, o app inicia chamadas acima de 2 req/s; pedidos simultâneos auten",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/qualidade/route.ts:19-29`; `lib/sincronizacao/index.ts:48-70`",
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "014"
   },
   {
    "id": "N4",
-   "texto": "Retirar uma regra conta como cadastro corrigido.",
+   "texto": "Retirar uma regra conta como cadastro corrigido. Configure um campo obrigatório vazio, sincronize, desmarque o campo sem alterar nenhum cadastro e execute nova varredura. A diferença entre `violacoes_qualidade_anteriores` e as violações atuais conta as ausências removidas como `corrigidosPorRegra`; ",
    "gravidade": "baixa",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/qualidade/index.ts:143-146`; `app/qualidade/page.tsx:45`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "014",
@@ -923,9 +906,9 @@ const D = {
   },
   {
    "id": "M1",
-   "texto": "O diagnóstico automático pode imprimir credencial integral no stdout.",
+   "texto": "O diagnóstico automático pode imprimir credencial integral no stdout. A máscara de `:155` só remove credenciais na forma `//usuario:senha@`; `HTTPS_PROXY=https://proxy.ficticio.invalid/?token=segredo-ficticio` é impresso integralmente em `:169`. Uma variável `ONNIRA_GATEWAY_HEADER=Bearer segredo-fic",
    "gravidade": "alta",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`scripts/diagnostico-rede.mjs:147-169`; `package.json:8`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "013",
@@ -933,9 +916,9 @@ const D = {
   },
   {
    "id": "M2",
-   "texto": "Falha local depois de restauração confirmada perde o resultado HTTP.",
+   "texto": "Falha local depois de restauração confirmada perde o resultado HTTP. `executar` pode ter devolvido `aplicado` após `crm.*.update`, mas `desfazerAlteracao` ainda grava `revertido_em`, exclui a marca local de consolidação e atualiza o contador em `:144-146`, fora de proteção. Com disco cheio ou erro S",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:136-151`; `app/api/padronizacao/route.ts:15,20`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "013",
@@ -943,9 +926,9 @@ const D = {
   },
   {
    "id": "M3",
-   "texto": "Restauração incerta pode ficar bloqueada sem saída pela interface após troca legítima da chave.",
+   "texto": "Restauração incerta pode ficar bloqueada sem saída pela interface após troca legítima da chave. Uma restauração chega ao CRM, perde a resposta e a conferência imediata; fica `incerto` e bloqueia novo desfazer da linha original. Se o operador revogar o webhook antigo e configurar outro do mesmo porta",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`lib/padronizacao/index.ts:105,153-169`; `app/padronizacao/painel.tsx:10`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "013",
@@ -953,18 +936,18 @@ const D = {
   },
   {
    "id": "M4",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado.",
+   "texto": "Permanece a escrita forjada da revisão 012. Com sessão ativa em `app.exemplo.com`, JavaScript em `outro.exemplo.com` pode enviar `fetch(\"https://app.exemplo.com/api/padronizacao\",{method:\"POST\",mode:\"no-cors\",credentials:\"include\",headers:{\"Content-Type\":\"text/plain\"},body:JSON.stringify({acao:\"desf",
    "gravidade": "média",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`app/api/padronizacao/route.ts:7-16`; `app/api/duplicados/route.ts:12-29`; `app/api/configuracao/route.ts:10-22`; `lib/autenticacao.ts:60-63`",
    "estado": "aberto",
    "origem": "segurança",
    "tarefa": "013"
   },
   {
    "id": "M5",
-   "texto": "Sonda de DNS sem prazo pode segurar a subida do app.",
+   "texto": "Sonda de DNS sem prazo pode segurar a subida do app. `npm start` aguarda o script terminar antes de executar `next start`. As sondas TCP, TLS e HTTPS têm temporizador; `lookup(host)` não tem. Com resolvedor que não conclui a consulta de `CONTROLE_EXTRA` ou do portal, o processo fica aguardando a son",
    "gravidade": "baixa",
-   "onde_no_codigo": "",
+   "onde_no_codigo": "`scripts/diagnostico-rede.mjs:69-79,209-229`; `package.json:8`",
    "estado": "fechado",
    "origem": "segurança",
    "tarefa": "013",
@@ -978,8 +961,8 @@ const D = {
    "tarefa": "016",
    "estado": "fechado",
    "fechado_por": "016",
-   "onde_no_codigo": "",
-   "texto": "O CSV do histórico podia entregar a chave do webhook inteira."
+   "onde_no_codigo": "`lib/padronizacao/exportar-csv.ts:6-26`; `app/api/padronizacao/exportar/route.ts:16`",
+   "texto": "O CSV do histórico podia entregar a chave do webhook inteira. A limpeza só conhecia a credencial guardada na própria linha, então linha com `webhook` nulo — legado anterior à coluna, ou valor colado de outra conexão — saía com a chave na coluna \"Valor anterior\". Reproduzido em SQLite pela revisão. Fechado: a lista de segredos passa a vir do histórico inteiro mais a conexão vigente e vale para todas as linhas."
   },
   {
    "id": "O2",
@@ -988,8 +971,8 @@ const D = {
    "tarefa": "016",
    "estado": "fechado",
    "fechado_por": "016",
-   "onde_no_codigo": "",
-   "texto": "O selo \"Somente leitura\" dizia \"nada é gravado no CRM\", e isso era falso: passa sem as duas trancas de propósito, decidido nas tarefas 010 e I1."
+   "onde_no_codigo": "`app/layout.tsx:20-26`; `app/api/padronizacao/route.ts:16-17`",
+   "texto": "O selo \"Somente leitura\" dizia \"nada é gravado no CRM\", e isso era falso: `desfazer` passa sem as duas trancas de propósito, decidido nas tarefas 010 e I1. Fechado pelo texto, não pela tranca — trancar o desfazer prenderia correção já aplicada no CRM do cliente. O selo agora promete só o que o app cumpre: nenhuma correção nova é gravada, desfazer de correção já aplicada continua possível."
   },
   {
    "id": "O3",
@@ -998,8 +981,8 @@ const D = {
    "tarefa": "016",
    "estado": "fechado",
    "fechado_por": "016",
-   "onde_no_codigo": "",
-   "texto": "A prova automatizada de ausência do menu não observava o menu."
+   "onde_no_codigo": "`tests/acesso.test.mjs:36,38`",
+   "texto": "A prova automatizada de ausência do menu não observava o menu. O mock de JSX guardava o componente no campo `tipo` como função e `JSON.stringify` omite função, então a busca por \"Navegacao\" era sempre falsa — renderizado ou não. Quem removesse a guarda teria suíte verde. Fechado: o mock serializa o nome da função e o teste passa a exigir também o estado positivo."
   },
   {
    "id": "O4",
@@ -1008,8 +991,8 @@ const D = {
    "tarefa": "016",
    "estado": "fechado",
    "fechado_por": "016",
-   "onde_no_codigo": "",
-   "texto": "O selo era fotografia sem atualização."
+   "onde_no_codigo": "`app/configuracao/wizard.tsx:14,39,46`",
+   "texto": "O selo era fotografia sem atualização. Salvar ou reconferir a conexão no wizard muda `escrita_habilitada` no banco, mas o layout continuava mostrando o estado anterior até recarregar — selo dizendo \"Escrita habilitada\" depois de a reconferência tê-la desligado. Fechado com `router.refresh()` nos dois caminhos."
   },
   {
    "id": "O5",
@@ -1018,8 +1001,8 @@ const D = {
    "tarefa": "016",
    "estado": "fechado",
    "fechado_por": "016",
-   "onde_no_codigo": "",
-   "texto": "A coluna \"Quem desfez\" do CSV prometia o que o esquema não guarda: punha a constante \"Administrador autenticado\" numa restauração e, no mesmo lugar, o nome de quem resolveu à mão."
+   "onde_no_codigo": "`lib/padronizacao/exportar-csv.ts:62-70`",
+   "texto": "A coluna \"Quem desfez\" do CSV prometia o que o esquema não guarda: punha a constante \"Administrador autenticado\" numa restauração e, no mesmo lugar, o nome de quem resolveu à mão. Em auditoria isso atribui pessoa ao ato errado. Fechado: viraram duas colunas honestas — ação registrada e operador registrado —, e a restauração declara que o autor não está registrado."
   },
   {
    "id": "O6",
@@ -1027,8 +1010,8 @@ const D = {
    "origem": "arquitetura",
    "tarefa": "016",
    "estado": "aberto",
-   "onde_no_codigo": "",
-   "texto": "Achado de gravidade média em correção. O detalhe fica no repositório privado até ser fechado."
+   "onde_no_codigo": "`app/padronizacao/page.tsx:7`; `lib/padronizacao/index.ts:26-27`; `lib/padronizacao/exportar-csv.ts:44`",
+   "texto": "Os filtros do histórico têm dois donos. Página, contagem e CSV repetem a aceitação de entidade e a cláusula de portal em três consultas. Quando a tela ganhar filtro de resultado ou período, atualizar só a consulta visível fará \"Exportar histórico filtrado\" incluir linhas que a pessoa não vê. Não fechado nesta rodada: exige consulta ou objeto de filtros compartilhado."
   },
   {
    "id": "O7",
@@ -1036,11 +1019,28 @@ const D = {
    "origem": "arquitetura",
    "tarefa": "016",
    "estado": "aberto",
-   "onde_no_codigo": "",
-   "texto": "Achado de gravidade baixa em correção. O detalhe fica no repositório privado até ser fechado."
+   "onde_no_codigo": "`lib/padronizacao/exportar-csv.ts:44,58`",
+   "texto": "O lote da exportação limita linhas, não bytes. Com campo multivalorado grande, a consulta materializa 256 pares anterior/novo de tamanho sem teto antes da primeira linha. O teste de 30 mil registros usa valores curtos e prova paginação, não pico de memória dentro de 512 MB. Não fechado: exige ensaio de RSS com valores volumosos."
   }
  ],
- "riscos": [],
+ "riscos": [
+  {
+   "texto": "Pipeline em Dia (projeto da equipe) está parado por decisão de foco, com só o contrato da tarefa 003 escrito. Pela regra cruzada, ele não ser apresentado derruba o Faxina do CRM junto. É o maior risco aberto.",
+   "peso": "alto"
+  },
+  {
+   "texto": "Projeto 15 não confirmado. Mesmo efeito cruzado.",
+   "peso": "alto"
+  },
+  {
+   "texto": "A Onnira devolve 403 a acesso externo e o contêiner não alcança o Bitrix24 (D1/D2). Sem resposta, o T10 fica parcial e a demonstração do pitch não roda hospedada.",
+   "peso": "alto"
+  },
+  {
+   "texto": "Os 14 materiais de publicação não são código e não entram pelo fluxo de tarefas. Os 7 do Faxina estão em rascunho; os 7 do Pipeline, intocados.",
+   "peso": "médio"
+  }
+ ],
  "marcos": [
   {
    "data": "2026-10-22",
