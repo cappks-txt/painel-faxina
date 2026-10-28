@@ -338,7 +338,7 @@ const D = {
    "id": "015",
    "titulo": "a escrita nunca mente sobre o que chegou no CRM",
    "estado": "conferida",
-   "testes": 79,
+   "testes": 87,
    "branch": "tarefa-015",
    "commit": "4d30a4d",
    "data": "2026-10-24",
@@ -348,11 +348,11 @@ const D = {
    "id": "016",
    "titulo": "navegar sem voltar ao início, e fechar o que falta de acessibilidade",
    "estado": "conferida",
-   "testes": 109,
+   "testes": 113,
    "branch": "tarefa-016",
-   "commit": "ffcb3a8",
+   "commit": "92d807e",
    "data": "2026-10-28",
-   "sha": "ffcb3a8"
+   "sha": "92d807e"
   },
   {
    "id": "017",
@@ -367,21 +367,12 @@ const D = {
   {
    "id": "018",
    "titulo": "o operador enxerga o que está acontecendo",
-   "estado": "conferida",
-   "testes": 76,
+   "estado": "executada",
+   "testes": 81,
    "branch": "tarefa-018",
    "commit": "2de3579",
    "data": "2026-10-28",
    "sha": "2de3579"
-  },
-  {
-   "id": "015",
-   "titulo": "A escrita não mente: falha local e restauração incerta",
-   "entrega": "fecha L4, L5, M2, M3",
-   "escreve_no_crm": true,
-   "estado": "futura",
-   "testes": null,
-   "branch": null
   },
   {
    "id": "016",
@@ -396,15 +387,6 @@ const D = {
    "id": "017",
    "titulo": "Respeitar o CRM do cliente: freio e destino do webhook",
    "entrega": "fecha N3, E6",
-   "escreve_no_crm": false,
-   "estado": "futura",
-   "testes": null,
-   "branch": null
-  },
-  {
-   "id": "018",
-   "titulo": "O operador enxerga o que acontece",
-   "entrega": "fecha E9, N1, N4",
    "escreve_no_crm": false,
    "estado": "futura",
    "testes": null,
@@ -512,8 +494,8 @@ const D = {
   {
    "id": "T10",
    "texto": "Rodar hospedado na Onnira Cloud AI",
-   "estado": "parcial",
-   "nota": "publicado e RUNNING na Onnira (512 MB · 5 GB · 1 vCPU); não verificável de fora — a plataforma devolve 403 a acesso externo",
+   "estado": "pronto",
+   "nota": "rodando na Onnira Cloud AI, dentro do painel, conectado a portal Bitrix24 real. A sessão não usa cookie: o gateway não o repassa, e a plataforma fornece a identidade do usuário por cabeçalho (`x-onnira-user-id`), validada em forma de UUID e declarada na publicação. Medido em 28/10, após 19 publicações.",
    "tarefa": "deploy"
   }
  ],
@@ -544,16 +526,18 @@ const D = {
   {
    "id": "D1",
    "texto": "O app publicado responde 403 a acesso externo: a Onnira só permite acesso de dentro da plataforma. Não há campo de visibilidade na API pública.",
-   "estado": "aberto",
+   "estado": "fechado",
    "prazo": "confirmar no plantão de 22/10, antes do pitch",
-   "tarefa": "deploy"
+   "tarefa": "deploy",
+   "fechado_por": "016"
   },
   {
    "id": "D2",
    "tarefa": "deploy",
-   "estado": "aberto",
+   "estado": "fechado",
    "prazo": "plantão de 22/10",
-   "texto": "O contêiner da Onnira não alcança o portal Bitrix24: falha de rede em 10,5 s, enquanto o mesmo portal responde em 0,63 s de fora. Sem saída de rede, a integração REST não funciona lá — e é o requisito central do desafio."
+   "texto": "O contêiner da Onnira não alcança o portal Bitrix24: falha de rede em 10,5 s, enquanto o mesmo portal responde em 0,63 s de fora. Sem saída de rede, a integração REST não funciona lá — e é o requisito central do desafio.",
+   "fechado_por": "016"
   },
   {
    "id": "E1",
@@ -631,9 +615,10 @@ const D = {
    "gravidade": "média",
    "texto": "Sincronização longa não mostra progresso: com 32 mil contatos a 2 req/s leva dezenas de minutos e a tela parece travada. O usuário não tem como saber se está funcionando ou pendurado.",
    "onde_no_codigo": "app/sincronizacao/, app/api/sincronizacao/route.ts",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "uso real",
-   "tarefa": "005"
+   "tarefa": "005",
+   "fechado_por": "018"
   },
   {
    "id": "G1",
@@ -870,9 +855,10 @@ const D = {
    "texto": "O resultado parcial ainda se perde se o trabalho local posterior ao lote falhar. `aplicarSelecionadas` só devolve `out` depois de `atualizarContadorPropostas`, fora do `try` de cada item. Numa instância que esgota o espaço de `./data` durante a atualização do contador, a primeira chave já pode ter s",
    "gravidade": "média",
    "onde_no_codigo": "`lib/padronizacao/index.ts:70`; `app/api/padronizacao/route.ts:17-18`; `app/api/duplicados/route.ts:29-38`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "012"
+   "tarefa": "012",
+   "fechado_por": "015"
   },
   {
    "id": "L5",
@@ -887,28 +873,31 @@ const D = {
    "id": "L6",
    "texto": "Origem do pedido de escrita não é verificada. Com o operador autenticado em `app.exemplo.com`, JavaScript numa origem controlada por terceiro em `outro.exemplo.com` pode enviar `fetch(\"https://app.exemplo.com/api/padronizacao\", {method:\"POST\",mode:\"no-cors\",credentials:\"include\",headers:{\"Content-Ty",
    "gravidade": "média",
-   "onde_no_codigo": "`app/api/padronizacao/route.ts:7-15`; `app/api/duplicados/route.ts:12-29`; `app/api/configuracao/route.ts:10-22`; `lib/autenticacao.ts:60-63`",
-   "estado": "aberto",
+   "onde_no_codigo": "`lib/entrada.ts` (origemConfere); guarda nas cinco rotas de escrita",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "012"
+   "tarefa": "012",
+   "fechado_por": "016"
   },
   {
    "id": "N1",
    "texto": "Campo escolhido depois da primeira sincronização fica sem valores para registros antigos. Sincronize uma base de 32 mil contatos, escolha então um campo de CPF e um campo esperado em `/qualidade`, e sincronize novamente sem editar os contatos no Bitrix. A consulta incremental conserva `maior_date_mo",
    "gravidade": "média",
    "onde_no_codigo": "`lib/sincronizacao/index.ts:143,176,203`; `app/qualidade/campos.tsx:24,38`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "014"
+   "tarefa": "014",
+   "fechado_por": "018"
   },
   {
    "id": "N2",
    "texto": "Uma origem irmã pode mudar silenciosamente as regras de análise. Com sessão ativa em `app.exemplo.com`, código em `outro.exemplo.com` envia `fetch(\"https://app.exemplo.com/api/qualidade\", {method:\"POST\",mode:\"no-cors\",credentials:\"include\",headers:{\"Content-Type\":\"text/plain\"},body:JSON.stringify({a",
    "gravidade": "média",
-   "onde_no_codigo": "`app/api/qualidade/route.ts:12-18,33-39`; `lib/autenticacao.ts:60-63`",
-   "estado": "aberto",
+   "onde_no_codigo": "`lib/entrada.ts` (origemConfere); guarda nas cinco rotas de escrita",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "014"
+   "tarefa": "014",
+   "fechado_por": "016"
   },
   {
    "id": "N3",
@@ -924,45 +913,50 @@ const D = {
    "texto": "Retirar uma regra conta como cadastro corrigido. Configure um campo obrigatório vazio, sincronize, desmarque o campo sem alterar nenhum cadastro e execute nova varredura. A diferença entre `violacoes_qualidade_anteriores` e as violações atuais conta as ausências removidas como `corrigidosPorRegra`; ",
    "gravidade": "baixa",
    "onde_no_codigo": "`lib/qualidade/index.ts:143-146`; `app/qualidade/page.tsx:45`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "014"
+   "tarefa": "014",
+   "fechado_por": "018"
   },
   {
    "id": "M1",
    "texto": "O diagnóstico automático pode imprimir credencial integral no stdout. A máscara de `:155` só remove credenciais na forma `//usuario:senha@`; `HTTPS_PROXY=https://proxy.ficticio.invalid/?token=segredo-ficticio` é impresso integralmente em `:169`. Uma variável `ONNIRA_GATEWAY_HEADER=Bearer segredo-fic",
    "gravidade": "alta",
    "onde_no_codigo": "`scripts/diagnostico-rede.mjs:147-169`; `package.json:8`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "013"
+   "tarefa": "013",
+   "fechado_por": "015"
   },
   {
    "id": "M2",
    "texto": "Falha local depois de restauração confirmada perde o resultado HTTP. `executar` pode ter devolvido `aplicado` após `crm.*.update`, mas `desfazerAlteracao` ainda grava `revertido_em`, exclui a marca local de consolidação e atualiza o contador em `:144-146`, fora de proteção. Com disco cheio ou erro S",
    "gravidade": "média",
    "onde_no_codigo": "`lib/padronizacao/index.ts:136-151`; `app/api/padronizacao/route.ts:15,20`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "013"
+   "tarefa": "013",
+   "fechado_por": "015"
   },
   {
    "id": "M3",
    "texto": "Restauração incerta pode ficar bloqueada sem saída pela interface após troca legítima da chave. Uma restauração chega ao CRM, perde a resposta e a conferência imediata; fica `incerto` e bloqueia novo desfazer da linha original. Se o operador revogar o webhook antigo e configurar outro do mesmo porta",
    "gravidade": "média",
    "onde_no_codigo": "`lib/padronizacao/index.ts:105,153-169`; `app/padronizacao/painel.tsx:10`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "013"
+   "tarefa": "013",
+   "fechado_por": "015"
   },
   {
    "id": "M4",
    "texto": "Permanece a escrita forjada da revisão 012. Com sessão ativa em `app.exemplo.com`, JavaScript em `outro.exemplo.com` pode enviar `fetch(\"https://app.exemplo.com/api/padronizacao\",{method:\"POST\",mode:\"no-cors\",credentials:\"include\",headers:{\"Content-Type\":\"text/plain\"},body:JSON.stringify({acao:\"desf",
    "gravidade": "média",
-   "onde_no_codigo": "`app/api/padronizacao/route.ts:7-16`; `app/api/duplicados/route.ts:12-29`; `app/api/configuracao/route.ts:10-22`; `lib/autenticacao.ts:60-63`",
-   "estado": "aberto",
+   "onde_no_codigo": "`lib/entrada.ts` (origemConfere); guarda nas cinco rotas de escrita",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "013"
+   "tarefa": "013",
+   "fechado_por": "016"
   },
   {
    "id": "M5",
@@ -974,6 +968,164 @@ const D = {
    "tarefa": "013",
    "fechado_por": "013",
    "nota_fechamento": "a revisao viu a versao anterior ao conserto: o teto total de 45s e a execucao em paralelo com o servidor ja estavam no commit"
+  },
+  {
+   "id": "O1",
+   "gravidade": "alta",
+   "origem": "segurança",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`lib/padronizacao/exportar-csv.ts:6-26`; `app/api/padronizacao/exportar/route.ts:16`",
+   "texto": "O CSV do histórico podia entregar a chave do webhook inteira. A limpeza só conhecia a credencial guardada na própria linha, então linha com `webhook` nulo — legado anterior à coluna, ou valor colado de outra conexão — saía com a chave na coluna \"Valor anterior\". Reproduzido em SQLite pela revisão. Fechado: a lista de segredos passa a vir do histórico inteiro mais a conexão vigente e vale para todas as linhas."
+  },
+  {
+   "id": "O2",
+   "gravidade": "média",
+   "origem": "segurança",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`app/layout.tsx:20-26`; `app/api/padronizacao/route.ts:16-17`",
+   "texto": "O selo \"Somente leitura\" dizia \"nada é gravado no CRM\", e isso era falso: `desfazer` passa sem as duas trancas de propósito, decidido nas tarefas 010 e I1. Fechado pelo texto, não pela tranca — trancar o desfazer prenderia correção já aplicada no CRM do cliente. O selo agora promete só o que o app cumpre: nenhuma correção nova é gravada, desfazer de correção já aplicada continua possível."
+  },
+  {
+   "id": "O3",
+   "gravidade": "baixa",
+   "origem": "segurança",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`tests/acesso.test.mjs:36,38`",
+   "texto": "A prova automatizada de ausência do menu não observava o menu. O mock de JSX guardava o componente no campo `tipo` como função e `JSON.stringify` omite função, então a busca por \"Navegacao\" era sempre falsa — renderizado ou não. Quem removesse a guarda teria suíte verde. Fechado: o mock serializa o nome da função e o teste passa a exigir também o estado positivo."
+  },
+  {
+   "id": "O4",
+   "gravidade": "baixa",
+   "origem": "arquitetura",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`app/configuracao/wizard.tsx:14,39,46`",
+   "texto": "O selo era fotografia sem atualização. Salvar ou reconferir a conexão no wizard muda `escrita_habilitada` no banco, mas o layout continuava mostrando o estado anterior até recarregar — selo dizendo \"Escrita habilitada\" depois de a reconferência tê-la desligado. Fechado com `router.refresh()` nos dois caminhos."
+  },
+  {
+   "id": "O5",
+   "gravidade": "baixa",
+   "origem": "arquitetura",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`lib/padronizacao/exportar-csv.ts:62-70`",
+   "texto": "A coluna \"Quem desfez\" do CSV prometia o que o esquema não guarda: punha a constante \"Administrador autenticado\" numa restauração e, no mesmo lugar, o nome de quem resolveu à mão. Em auditoria isso atribui pessoa ao ato errado. Fechado: viraram duas colunas honestas — ação registrada e operador registrado —, e a restauração declara que o autor não está registrado."
+  },
+  {
+   "id": "O6",
+   "gravidade": "média",
+   "origem": "arquitetura",
+   "tarefa": "016",
+   "estado": "aberto",
+   "onde_no_codigo": "`app/padronizacao/page.tsx:7`; `lib/padronizacao/index.ts:26-27`; `lib/padronizacao/exportar-csv.ts:44`",
+   "texto": "Os filtros do histórico têm dois donos. Página, contagem e CSV repetem a aceitação de entidade e a cláusula de portal em três consultas. Quando a tela ganhar filtro de resultado ou período, atualizar só a consulta visível fará \"Exportar histórico filtrado\" incluir linhas que a pessoa não vê. Não fechado nesta rodada: exige consulta ou objeto de filtros compartilhado."
+  },
+  {
+   "id": "O7",
+   "gravidade": "baixa",
+   "origem": "arquitetura",
+   "tarefa": "016",
+   "estado": "aberto",
+   "onde_no_codigo": "`lib/padronizacao/exportar-csv.ts:44,58`",
+   "texto": "O lote da exportação limita linhas, não bytes. Com campo multivalorado grande, a consulta materializa 256 pares anterior/novo de tamanho sem teto antes da primeira linha. O teste de 30 mil registros usa valores curtos e prova paginação, não pico de memória dentro de 512 MB. Não fechado: exige ensaio de RSS com valores volumosos."
+  },
+  {
+   "id": "P1",
+   "gravidade": "alta",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`package.json`",
+   "texto": "O build quebrava em instalação de produção. `npm ci --omit=dev && npm run build` falhava com `Module not found: Can't resolve '@/lib/autenticacao'`: o alias `@/*` vem do tsconfig, e quem lê o tsconfig é o `typescript`, que estava em devDependencies. O contêiner subia sem aplicação e o health check reprovava — bate com o `exited:unhealthy` da hospedagem. Local nunca apareceu porque `npm ci` sem flag instala tudo."
+  },
+  {
+   "id": "P2",
+   "gravidade": "alta",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`lib/padronizacao/index.ts` (titulo)",
+   "texto": "A padronização de nome destruía dado em base real: das 50 propostas contra um portal de teste com 2.136 registros, doze estragavam o valor — `EBAC`→`Ebac`, `LinkedIn`→`Linkedin`, `Recibos da Uber`→`Recibos Da Uber` e `imprensa@sesc-sc.com.br`→`Imprensa@sesc-Sc.com.br`. A regra baixava tudo e capitalizava cada palavra, sem exceção. Nada disso aparecia contra o portal fictício."
+  },
+  {
+   "id": "P3",
+   "gravidade": "alta",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`lib/entrada.ts`; `app/login/page.tsx`",
+   "texto": "Entrada recusada jogava a pessoa para fora do app. A tela de login é formulário HTML nativo; recusada a entrada, a rota devolvia 401 com corpo JSON e o navegador saía do app para renderizar o JSON cru em /api/login. E sem SENHA_INICIAL_TOKEN a primeira senha não podia ser criada pela tela, porque o segredo só aparecia no log e a mensagem não dizia isso."
+  },
+  {
+   "id": "P4",
+   "gravidade": "média",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`app/api/sincronizacao/route.ts`; `app/sincronizacao/painel.tsx`",
+   "texto": "A sincronização não cabia em requisição nenhuma hospedada: a rota fazia `await sincronizarTudo(...)`, e uma base real leva de 51 s (2.136 registros) a dezenas de minutos, contra uma borda que desiste em ~10,7 s. Agora responde 202 e o trabalho segue no servidor, com o GET entregando avanço e falha."
+  },
+  {
+   "id": "P5",
+   "gravidade": "média",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`lib/autenticacao.ts` (criarCookieSessao)",
+   "texto": "O cookie de sessão não sobrevivia ao iframe do painel da hospedagem: painel e app ficam em domínios registráveis diferentes, e com `SameSite=Strict` o navegador não guarda nem envia o cookie. Servido por HTTPS passa a sair `SameSite=None; Secure; Partitioned`; local segue `Strict`. A defesa que o Strict fazia foi substituída pela conferência de `Origin`, que fecha L6, M4 e N2."
+  },
+  {
+   "id": "P6",
+   "gravidade": "média",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`app/api/configuracao/route.ts`",
+   "texto": "Trocar o webhook pedia uma confirmação por tentativa: aperta e aparece 'confirme a limpeza'; marca, aperta, aparece 'confirme produção'; marca, aperta, salva. Cada passo chegava como erro, e duas pessoas diferentes leram como tela quebrada. Agora as duas pendências voltam juntas. Também: a conferência de conexão ganhou teto TOTAL de 6 s, porque eram duas chamadas de 8 s em sequência, acima da janela da borda."
+  },
+  {
+   "id": "P7",
+   "gravidade": "baixa",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`instrumentation.ts`; `instrumentation-node.ts`",
+   "texto": "O gancho de inicialização era compilado também para o Edge runtime, onde `node:fs` e `node:path` não existem, e cuspia `Ecmascript file had an error` a cada boot. Não derruba o servidor, por isso passava despercebido, mas suja o log onde se procura problema de verdade. O código Node foi para arquivo próprio, importado só quando o runtime é Node."
+  },
+  {
+   "id": "P8",
+   "gravidade": "média",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "onde_no_codigo": "plataforma Onnira",
+   "texto": "Criar aplicação na Onnira falha sempre com `Validation failed. — network: A Docker network with this name already exists on the server`. Oito ocorrências em 27/10, incluindo uma em conta recém-limpa, com nome inédito e parâmetros corretos. E o endpoint de logs revelou `exited:unhealthy` do Coolify no app publicado. É do lado da plataforma; evidência e perguntas em `onnira-para-murilo.md`.",
+   "fechado_por": "016"
+  },
+  {
+   "id": "Q1",
+   "gravidade": "média",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`lib/autenticacao.ts` (identidadeDaPlataforma); `middleware.ts`; `lib/entrada.ts`",
+   "texto": "Sessão por cookie não sobrevive ao gateway da hospedagem. Medido em toda forma: atributo (Partitioned, SameSite, HttpOnly, validade, tamanho do valor), verbo, rota e tipo de resposta — só a resposta de `/login` entrega cookie, e a query string é removida antes de chegar. Fechado apoiando a sessão no cabeçalho `x-onnira-user-id` que a plataforma injeta, validado em forma de UUID e só com declaração de quem publica."
   }
  ],
  "riscos": [
