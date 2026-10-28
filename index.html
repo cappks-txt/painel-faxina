@@ -348,11 +348,11 @@ const D = {
    "id": "016",
    "titulo": "navegar sem voltar ao início, e fechar o que falta de acessibilidade",
    "estado": "conferida",
-   "testes": 105,
+   "testes": 113,
    "branch": "tarefa-016",
-   "commit": "7788f75",
+   "commit": "c0f5672",
    "data": "2026-10-28",
-   "sha": "7788f75"
+   "sha": "c0f5672"
   },
   {
    "id": "018",
@@ -484,8 +484,8 @@ const D = {
   {
    "id": "T10",
    "texto": "Rodar hospedado na Onnira Cloud AI",
-   "estado": "parcial",
-   "nota": "publicado e RUNNING na Onnira (512 MB · 5 GB · 1 vCPU); não verificável de fora — a plataforma devolve 403 a acesso externo",
+   "estado": "pronto",
+   "nota": "rodando na Onnira Cloud AI, dentro do painel, conectado a portal Bitrix24 real. A sessão não usa cookie: o gateway não o repassa, e a plataforma fornece a identidade do usuário por cabeçalho (`x-onnira-user-id`), validada em forma de UUID e declarada na publicação. Medido em 28/10, após 19 publicações.",
    "tarefa": "deploy"
   }
  ],
@@ -516,16 +516,18 @@ const D = {
   {
    "id": "D1",
    "texto": "O app publicado responde 403 a acesso externo: a Onnira só permite acesso de dentro da plataforma. Não há campo de visibilidade na API pública.",
-   "estado": "aberto",
+   "estado": "fechado",
    "prazo": "confirmar no plantão de 22/10, antes do pitch",
-   "tarefa": "deploy"
+   "tarefa": "deploy",
+   "fechado_por": "016"
   },
   {
    "id": "D2",
    "tarefa": "deploy",
-   "estado": "aberto",
+   "estado": "fechado",
    "prazo": "plantão de 22/10",
-   "texto": "O contêiner da Onnira não alcança o portal Bitrix24: falha de rede em 10,5 s, enquanto o mesmo portal responde em 0,63 s de fora. Sem saída de rede, a integração REST não funciona lá — e é o requisito central do desafio."
+   "texto": "O contêiner da Onnira não alcança o portal Bitrix24: falha de rede em 10,5 s, enquanto o mesmo portal responde em 0,63 s de fora. Sem saída de rede, a integração REST não funciona lá — e é o requisito central do desafio.",
+   "fechado_por": "016"
   },
   {
    "id": "E1",
@@ -1100,9 +1102,20 @@ const D = {
    "gravidade": "média",
    "origem": "uso real",
    "tarefa": "016",
-   "estado": "aberto",
+   "estado": "fechado",
    "onde_no_codigo": "plataforma Onnira",
-   "texto": "Criar aplicação na Onnira falha sempre com `Validation failed. — network: A Docker network with this name already exists on the server`. Oito ocorrências em 27/10, incluindo uma em conta recém-limpa, com nome inédito e parâmetros corretos. E o endpoint de logs revelou `exited:unhealthy` do Coolify no app publicado. É do lado da plataforma; evidência e perguntas em `onnira-para-murilo.md`."
+   "texto": "Criar aplicação na Onnira falha sempre com `Validation failed. — network: A Docker network with this name already exists on the server`. Oito ocorrências em 27/10, incluindo uma em conta recém-limpa, com nome inédito e parâmetros corretos. E o endpoint de logs revelou `exited:unhealthy` do Coolify no app publicado. É do lado da plataforma; evidência e perguntas em `onnira-para-murilo.md`.",
+   "fechado_por": "016"
+  },
+  {
+   "id": "Q1",
+   "gravidade": "média",
+   "origem": "uso real",
+   "tarefa": "016",
+   "estado": "fechado",
+   "fechado_por": "016",
+   "onde_no_codigo": "`lib/autenticacao.ts` (identidadeDaPlataforma); `middleware.ts`; `lib/entrada.ts`",
+   "texto": "Sessão por cookie não sobrevive ao gateway da hospedagem. Medido em toda forma: atributo (Partitioned, SameSite, HttpOnly, validade, tamanho do valor), verbo, rota e tipo de resposta — só a resposta de `/login` entrega cookie, e a query string é removida antes de chegar. Fechado apoiando a sessão no cabeçalho `x-onnira-user-id` que a plataforma injeta, validado em forma de UUID e só com declaração de quem publica."
   }
  ],
  "riscos": [
