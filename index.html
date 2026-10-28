@@ -367,7 +367,7 @@ const D = {
   {
    "id": "018",
    "titulo": "o operador enxerga o que está acontecendo",
-   "estado": "executada",
+   "estado": "conferida",
    "testes": 76,
    "branch": "tarefa-018",
    "commit": "2de3579",
@@ -631,10 +631,9 @@ const D = {
    "gravidade": "média",
    "texto": "Sincronização longa não mostra progresso: com 32 mil contatos a 2 req/s leva dezenas de minutos e a tela parece travada. O usuário não tem como saber se está funcionando ou pendurado.",
    "onde_no_codigo": "app/sincronizacao/, app/api/sincronizacao/route.ts",
-   "estado": "fechado",
+   "estado": "aberto",
    "origem": "uso real",
-   "tarefa": "005",
-   "fechado_por": "018"
+   "tarefa": "005"
   },
   {
    "id": "G1",
@@ -871,10 +870,9 @@ const D = {
    "texto": "O resultado parcial ainda se perde se o trabalho local posterior ao lote falhar. `aplicarSelecionadas` só devolve `out` depois de `atualizarContadorPropostas`, fora do `try` de cada item. Numa instância que esgota o espaço de `./data` durante a atualização do contador, a primeira chave já pode ter s",
    "gravidade": "média",
    "onde_no_codigo": "`lib/padronizacao/index.ts:70`; `app/api/padronizacao/route.ts:17-18`; `app/api/duplicados/route.ts:29-38`",
-   "estado": "fechado",
+   "estado": "aberto",
    "origem": "segurança",
-   "tarefa": "012",
-   "fechado_por": "015"
+   "tarefa": "012"
   },
   {
    "id": "L5",
@@ -899,10 +897,9 @@ const D = {
    "texto": "Campo escolhido depois da primeira sincronização fica sem valores para registros antigos. Sincronize uma base de 32 mil contatos, escolha então um campo de CPF e um campo esperado em `/qualidade`, e sincronize novamente sem editar os contatos no Bitrix. A consulta incremental conserva `maior_date_mo",
    "gravidade": "média",
    "onde_no_codigo": "`lib/sincronizacao/index.ts:143,176,203`; `app/qualidade/campos.tsx:24,38`",
-   "estado": "fechado",
+   "estado": "aberto",
    "origem": "segurança",
-   "tarefa": "014",
-   "fechado_por": "018"
+   "tarefa": "014"
   },
   {
    "id": "N2",
@@ -927,40 +924,36 @@ const D = {
    "texto": "Retirar uma regra conta como cadastro corrigido. Configure um campo obrigatório vazio, sincronize, desmarque o campo sem alterar nenhum cadastro e execute nova varredura. A diferença entre `violacoes_qualidade_anteriores` e as violações atuais conta as ausências removidas como `corrigidosPorRegra`; ",
    "gravidade": "baixa",
    "onde_no_codigo": "`lib/qualidade/index.ts:143-146`; `app/qualidade/page.tsx:45`",
-   "estado": "fechado",
+   "estado": "aberto",
    "origem": "segurança",
-   "tarefa": "014",
-   "fechado_por": "018"
+   "tarefa": "014"
   },
   {
    "id": "M1",
    "texto": "O diagnóstico automático pode imprimir credencial integral no stdout. A máscara de `:155` só remove credenciais na forma `//usuario:senha@`; `HTTPS_PROXY=https://proxy.ficticio.invalid/?token=segredo-ficticio` é impresso integralmente em `:169`. Uma variável `ONNIRA_GATEWAY_HEADER=Bearer segredo-fic",
    "gravidade": "alta",
    "onde_no_codigo": "`scripts/diagnostico-rede.mjs:147-169`; `package.json:8`",
-   "estado": "fechado",
+   "estado": "aberto",
    "origem": "segurança",
-   "tarefa": "013",
-   "fechado_por": "015"
+   "tarefa": "013"
   },
   {
    "id": "M2",
    "texto": "Falha local depois de restauração confirmada perde o resultado HTTP. `executar` pode ter devolvido `aplicado` após `crm.*.update`, mas `desfazerAlteracao` ainda grava `revertido_em`, exclui a marca local de consolidação e atualiza o contador em `:144-146`, fora de proteção. Com disco cheio ou erro S",
    "gravidade": "média",
    "onde_no_codigo": "`lib/padronizacao/index.ts:136-151`; `app/api/padronizacao/route.ts:15,20`",
-   "estado": "fechado",
+   "estado": "aberto",
    "origem": "segurança",
-   "tarefa": "013",
-   "fechado_por": "015"
+   "tarefa": "013"
   },
   {
    "id": "M3",
    "texto": "Restauração incerta pode ficar bloqueada sem saída pela interface após troca legítima da chave. Uma restauração chega ao CRM, perde a resposta e a conferência imediata; fica `incerto` e bloqueia novo desfazer da linha original. Se o operador revogar o webhook antigo e configurar outro do mesmo porta",
    "gravidade": "média",
    "onde_no_codigo": "`lib/padronizacao/index.ts:105,153-169`; `app/padronizacao/painel.tsx:10`",
-   "estado": "fechado",
+   "estado": "aberto",
    "origem": "segurança",
-   "tarefa": "013",
-   "fechado_por": "015"
+   "tarefa": "013"
   },
   {
    "id": "M4",
