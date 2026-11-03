@@ -699,12 +699,13 @@ const D = {
   },
   {
    "id": "I5",
-   "texto": "O teto de 500 não limita o tamanho da assinatura nem sua renderização. Para um grupo com mais de 500 membros, `idsDoGrupo` ainda materializa *todos* os IDs e `JSON.stringify([entidade,ids])` grava essa lista como chave primária. A listagem devolve a assinatura inteira ao componente cliente mesmo qua",
+   "texto": "O teto de 500 não limita o tamanho da assinatura nem sua renderização. Para um grupo com mais de 500 membros, `idsDoGrupo` ainda materializa *todos* os IDs e `JSON.stringify([entidade,ids])` grava essa lista como chave primária. A listagem devolve a assinatura inteira ao componente cliente mesmo qua  — fechado em 03/11 na tarefa 020: grupo acima do teto deixou de carregar a lista de ids na assinatura e passou a usar `[entidade,\"grande\",menorId]`. Medido num componente de 20 mil membros: a assinatura caiu de 108.907 para 22 caracteres. Os ids também deixaram de ser materializados nesse caminho.",
    "gravidade": "média",
    "onde_no_codigo": "`lib/duplicados/index.ts:112-120`; `app/duplicados/page.tsx:13`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "009"
+   "tarefa": "009",
+   "onde": "tarefa 020"
   },
   {
    "id": "I6",
@@ -868,12 +869,13 @@ const D = {
   },
   {
    "id": "L5",
-   "texto": "A tentativa incerta de desfazer oferece um segundo botão que pode refazer a correção. O Bitrix aceita a restauração, mas a resposta se perde; a consulta imediata de `:107` também falha durante a mesma interrupção de rede. O código conserva a linha original como `aplicado`, a segunda como `falha` e d",
+   "texto": "A tentativa incerta de desfazer oferece um segundo botão que pode refazer a correção. O Bitrix aceita a restauração, mas a resposta se perde; a consulta imediata de `:107` também falha durante a mesma interrupção de rede. O código conserva a linha original como `aplicado`, a segunda como `falha` e d  — fechado ANTES de 03/11, e o mapa é que estava vencido. Medido em 03/11 reproduzindo o cenário exato: a restauração que chega ao CRM sem resposta termina `incerto` (não `falha`), a listagem marca `reversaoIncerta` no original, a tela esconde o Desfazer e a própria função recusa segunda tentativa. Regressão travada em `tests/padronizacao.test.mjs`, nas camadas de rota (testes 'L5 HTTP') e de lib.",
    "gravidade": "média",
    "onde_no_codigo": "`lib/padronizacao/index.ts:103-119`; `app/padronizacao/painel.tsx:9-10`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "012"
+   "tarefa": "012",
+   "onde": "tarefa 020"
   },
   {
    "id": "L6",
@@ -907,12 +909,13 @@ const D = {
   },
   {
    "id": "N3",
-   "texto": "Descoberta de campos não respeita o freio REST. Um `POST /api/qualidade` com `{\"acao\":\"descobrir\"}` faz três chamadas diretas a `chamarBitrix` em sequência, sem `freioCompartilhado`. Se o portal responde cada lista em menos de 500 ms, o app inicia chamadas acima de 2 req/s; pedidos simultâneos auten",
+   "texto": "Descoberta de campos não respeita o freio REST. Um `POST /api/qualidade` com `{\"acao\":\"descobrir\"}` faz três chamadas diretas a `chamarBitrix` em sequência, sem `freioCompartilhado`. Se o portal responde cada lista em menos de 500 ms, o app inicia chamadas acima de 2 req/s; pedidos simultâneos auten  — fechado em 03/11 na tarefa 020: a descoberta saiu da rota para `lib/qualidade/descoberta.ts` e passa pelo `freioCompartilhado`. Prova em `tests/descoberta.test.mjs`, com relógio injetado; sem o freio o teste acusa 'chamada 2 saiu 0 ms depois da anterior'.",
    "gravidade": "média",
    "onde_no_codigo": "`app/api/qualidade/route.ts:19-29`; `lib/sincronizacao/index.ts:48-70`",
-   "estado": "aberto",
+   "estado": "fechado",
    "origem": "segurança",
-   "tarefa": "014"
+   "tarefa": "014",
+   "onde": "tarefa 020"
   },
   {
    "id": "N4",
